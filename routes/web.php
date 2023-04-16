@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +18,18 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::redirect("/","/cadastro");
 
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get("/cadastro",[RegisterController::class, 'index'])->name('register');
 Route::post("/cadastrar",[RegisterController::class, 'store'])->name('user.store');
-
 Route::get("/login",[LoginController::class, 'index'])->name('login');
-Route::post("/logar",[LoginController::class, 'login'])->name('check.login');
+Route::post("/",[LoginController::class, 'login'])->name('check.login');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+
+Route::group(['prefix' => 'publicar', 'as' => 'product.', "middleware" => "auth"],function() {
+    
+    Route::get('/', [ProductController::class,'create'])->name('create');
+    Route::post('/publicar', [ProductController::class,'store'])->name('store');
+
+});

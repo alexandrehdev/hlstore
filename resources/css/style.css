@@ -1,0 +1,10 @@
+.password-input{
+  padding-left: 40px;
+}
+.password-input::placeholder{
+  padding-left: 1px;
+  user-select: none;
+}
+::placeholder{
+    user-select: none;
+}
