@@ -25,6 +25,9 @@ class StoreProductRequest extends FormRequest
             "name" => [
                 "required"
             ],
+            "price" => [
+                "required"
+            ],
             "category" => [
                 "required"
             ],

@@ -14,6 +14,7 @@ class Input
     
     public function __construct(
         public string $name,
+        public string $price,
         public string $category,
         public string $file,
         public string $description,

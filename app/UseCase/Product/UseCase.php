@@ -11,6 +11,7 @@ class UseCase
     {
         $product = new Product();
         $product->name = $input->name;
+        $product->price = $input->price;
         $product->category = $input->category;
         $product->file = $input->file;
         $product->description = $input->description;

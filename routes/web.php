@@ -20,6 +20,9 @@ use App\Http\Controllers\ProductController;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+
+
+
 Route::get("/cadastro",[RegisterController::class, 'index'])->name('register');
 Route::post("/cadastrar",[RegisterController::class, 'store'])->name('user.store');
 Route::get("/login",[LoginController::class, 'index'])->name('login');
@@ -28,8 +31,9 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 Route::group(['prefix' => 'publicar', 'as' => 'product.', "middleware" => "auth"],function() {
-    
     Route::get('/', [ProductController::class,'create'])->name('create');
     Route::post('/publicar', [ProductController::class,'store'])->name('store');
 
 });
+
+Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');
