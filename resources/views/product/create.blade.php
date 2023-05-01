@@ -29,6 +29,13 @@
             </div>
 
             <div class="mb-6">
+                <label for="product_price"  class="block mb-2 text-sm font-medium money text-gray-900 dark:text-white">Preço do Produto</label>
+                <input type="text" id="product_price" name="price"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                    autocomplete="off" placeholder="R$ 0,00">
+            </div>
+
+            <div class="mb-6">
                 <label for="countries"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
                 <select id="countries" name="category"
