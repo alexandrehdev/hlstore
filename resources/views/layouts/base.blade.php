@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css','resources/js/scripts/main.js'])
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <title>HLStore</title>
+    <title>Promoções HLStore</title>
 </head>
 <body class="h-screen bg-stone-200 min-h-screen w-full">    
     @include('messages.info')

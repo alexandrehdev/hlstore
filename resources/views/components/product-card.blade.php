@@ -1,20 +1,12 @@
-<div class="swiper-slide p-12 m-4">
+<div class="swiper-slide bg-stone-200">
     <a href="{{ route("show", ["product" => $product->id]) }}">
-        <div class="h-auto bg-white">
-            <img class="p-8 rounded-t-lg" src="{{ Storage::url($product->file) }}" alt="product image" />
-            <div class="px-5 pb-5">
-                <a href="#">
-                    <h5 class="text-lg font-semibold tracking-tight text-black">{{ $product->name }}</h5>
-                </a>
-                <div class="flex items-center justify-center">
-                    <span
-                        class="text-md font-bold text-lime-500">R${{ number_format(floatval($product->price), 2, ',', '.') }}
-                    </span>
-                </div>
-                <span class="text-lime-600">
-                    Frete Grátis
-                </span>
+        <div class="w-60 bg-slate-500 p-2">
+            <div>
+                <img src="{{ Storage::url($product->file) }}" alt="{{ $product->name }}" class="rounded object-cover" style="height:200px; width:240px">
             </div>
+        </div>
+        <div class="bg-white w-60">
+            <h5 class="text-lg text-left p-2 font-semibold tracking-tight text-black">R${{ number_format(floatval($product->price), 2, ',', '.') }}</h5>
         </div>
     </a>
 </div>

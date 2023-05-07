@@ -3,17 +3,21 @@
 
 @section('content')
     <section class="h-1/3">
-       
+        <div class="flex justify-center">
+            <img src="{{ asset('img/no-image.png') }}" style="width:70%; height: 500px" alt="">
+        </div>
     </section>
     
-    <section class="h-1/3 m-10">
-        <h1>Acabou de Sair</h1>
+    <section class="h-1/3 m-56 pt-24">
+        <h2 class="text-base uppercase pb-2">Acabou de Sair</h2>
         <div class="flex justify-center">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     @if ($products)
-                        @foreach ($products as $product)
-                            <x-product-card :product="$product" />
+                        @foreach ($products as $index => $product)
+                            @if($index <= 5)
+                                <x-product-card :product="$product" />
+                            @endif
                         @endforeach
                     @endif
                 </div>
