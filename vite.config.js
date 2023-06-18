@@ -7,9 +7,11 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                  'resources/js/app.js',
-                 'resources/js/scripts/main.js'
+                 'resources/js/scripts/main.js',
+                 'resources/js/scripts/slide-behavior/home-slide.js',
+                 'resources/js/scripts/slide-behavior/show-slide.js'
                 ],
-            refresh: true,
+            refresh: false,
         }),
     ],
 });

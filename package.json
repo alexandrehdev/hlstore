@@ -13,7 +13,10 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@alpinejs/mask": "^3.12.2",
+        "alpinejs": "^3.12.2",
+        "flowbite": "^1.6.5",
         "jquery": "^3.6.4",
-        "swiper": "^9.2.4"
+        "swiper": "^9.3.1"
     }
 }
