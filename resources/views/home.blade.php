@@ -22,9 +22,7 @@
                 <div class="swiper-wrapper">
                     @if ($products)
                         @foreach ($products as $index => $product)
-                            @if($index <= 5)
-                                <x-product-card :product="$product" />
-                            @endif
+                            <x-product-card :product="$product" />
                         @endforeach
                     @endif
                 </div>

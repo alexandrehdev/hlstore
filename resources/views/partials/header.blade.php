@@ -1,33 +1,33 @@
-<nav class="fixed top-0 z-50 w-full bg-white text-white">
+<nav class="fixed top-0 z-50 w-full border border-b-stone-300 text-white">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
       <div class="flex items-center justify-evenly">
         <div class="flex items-center justify-start h-auto w-auto p-2 rounded-sm">
           <a href="{{ route('home') }}" class="flex ml-2 md:mr-24">
-            <span class="self-center text-lg text-zinc-800 font-semibold sm:text-2xl whitespace-nowrap ">HL</span>
+            <span class="self-center text-4xl text-black font-extrabold sm:text-2xl whitespace-nowrap ">HL</span>
           </a>
 
           <ul class="flex flex-row">
-            <li class="pr-20 text-black opacity-60 hover:opacity-100">
-              <a href="{{ route('home') }}" class="hover:bg-indigo-500 hover:text-white rounded-sm p-2">
+            <li class="pr-20 text-black">
+              <a href="{{ route('home') }}" class="rounded-sm p-2">
               Home
             </a>
             </li>
-            <li class="pr-20 text-black opacity-60 hover:opacity-100">
-              <a href="" class="hover:bg-indigo-500 hover:text-white rounded-sm p-2">
+            <li class="pr-20 text-black">
+              <a href="" class="rounded-sm p-2">
               Categorias
             </a>
-            <li class="pr-20 text-black opacity-60 hover:opacity-100">
-              <a href="" class="hover:bg-indigo-500 hover:text-white rounded-sm p-2">
+            <li class="pr-20 text-black">
+              <a href="" class="rounded-sm p-2">
               Ofertas
             </a>
             </li>
-            <li class="pr-20 text-black opacity-60 rounded-md hover:opacity-100">
-              <a href="{{ route('product.create') }}" class="hover:bg-indigo-500 hover:text-white rounded-sm  p-2">
+            <li class="pr-20 text-black">
+              <a href="{{ route('product.create') }}" class=" rounded-sm  p-2">
                 Publicar Produto
               </a>
             </li>
-            <li class="pr-20 text-black opacity-60 hover:opacity-100">
-              <a href="" class="hover:bg-indigo-500 hover:text-white rounded-sm p-2 ">
+            <li class="pr-20 text-black">
+              <a href="" class="hover:bg-indigo-500  rounded-sm p-2 ">
                 Contato
               </a>
             </li>
