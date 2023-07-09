@@ -2,7 +2,7 @@
     <a href="{{ route("show", ["product" => $product->id]) }}">
         <div class="w-72 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="{{ route("show", ["product" => $product->id]) }}">
-                <img class="p-8 rounded-t-lg" src="{{ Storage::url($product->file) }}" alt="product image" style="height:250px; width:250px" />
+                <img class="p-8 rounded-t-lg" src="{{ Storage::url($product->file) }}" alt="product image" style="height:220px; width:250px" />
             </a>
             <div class="px-5 pb-5">
                 <a href="#">

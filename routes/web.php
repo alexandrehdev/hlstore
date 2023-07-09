@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\OffersController;
+use App\Http\Controllers\PosterController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -32,8 +34,15 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'publicar', 'as' => 'product.', "middleware" => "auth"],function() {
     Route::get('/', [ProductController::class,'create'])->name('create');
-    Route::post('/publicar', [ProductController::class,'store'])->name('store');
+    Route::post('/criar', [ProductController::class,'store'])->name('store');
+});
 
+Route::group(['prefix' => 'ofertas', 'as' => 'offers.'], function () {
+    Route::get('/',[OffersController::class, 'show'])->name('show');
+});
+
+Route::group(['prefix' => 'posters', 'as' => 'posters.'], function(){
+    Route::post('/',[PosterController::class, 'store'])->name('create');
 });
 
 Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');

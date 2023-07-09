@@ -1,4 +1,4 @@
-<nav class="fixed top-0 z-50 w-full border border-b-stone-300 text-white">
+<nav class="fixed top-0 z-50 w-full border border-b-stone-300 bg-white text-white">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
       <div class="flex items-center justify-evenly">
         <div class="flex items-center justify-start h-auto w-auto p-2 rounded-sm">
@@ -17,17 +17,17 @@
               Categorias
             </a>
             <li class="pr-20 text-black">
-              <a href="" class="rounded-sm p-2">
+              <a href="{{ route('offers.show') }}" class="rounded-sm p-2">
               Ofertas
             </a>
             </li>
             <li class="pr-20 text-black">
-              <a href="{{ route('product.create') }}" class=" rounded-sm  p-2">
+              <a href="{{ route('product.create') }}" class=" rounded-sm p-2">
                 Publicar Produto
               </a>
             </li>
             <li class="pr-20 text-black">
-              <a href="" class="hover:bg-indigo-500  rounded-sm p-2 ">
+              <a href="" class="rounded-sm p-2 ">
                 Contato
               </a>
             </li>
