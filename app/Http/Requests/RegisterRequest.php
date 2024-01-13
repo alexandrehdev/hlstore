@@ -42,10 +42,10 @@ class RegisterRequest extends FormRequest
     public function messages() :array
     {
         return [
-            "username.required" => "O campo Nome de Usuário é obrigatório",
-            "email.required" => "O Campo de Email é obrigatório",
+            "username.required" => "Nome de usuário é obrigatório",
+            "email.required" => "Email é obrigatório",
             "email.unique" => "Email já cadastrado",
-            "password" => "O campo de Senha é obrigatório",
+            "password" => "A senha é obrigatório",
             "password_confirmation" => "O campo de confirmação de senha é obrigatorio"
         ];
     }

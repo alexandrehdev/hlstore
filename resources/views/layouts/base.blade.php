@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <title>HLStore</title>
 </head>
-<body class="h-screen bg-stone-200 min-h-screen w-full">    
+<body class="h-full bg-stone-200 w-full">    
     @include('messages.info')
     @include('messages.fail')
+    @include('errors.request-main')
     
     @yield('content')
     @yield('scripts')
