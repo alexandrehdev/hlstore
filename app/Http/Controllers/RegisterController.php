@@ -12,19 +12,21 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('register');
+        return view('auth.register');
     }
 
     public function store(RegisterRequest $request, CreateUser $create_user) :RedirectResponse
     { 
+        $data = $request->validated();
+        
         $user_input = new UserInput(
-            $request->validated()["username"],
-            $request->validated()["email"],
-            $request->validated()["password"],
+            $data["name"],
+            $data["email"],
+            $data["password"],
         );
 
         $create_user->execute($user_input);
 
-        return back()->with("success", "Usuario Cadastrado com Sucesso");
+        return back()->with("success", "Usuario Cadastrado.");
     }
 }

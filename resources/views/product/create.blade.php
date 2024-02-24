@@ -2,7 +2,6 @@
 
 @section('content')
     @include('partials.header')
-    @include('errors.request-main')
     <div class=" bg-indigo-500 h-1/4">
         <div class="flex justify-center top-28 relative z-50  p-0 items-center">
             <h1 class="text-white uppercase text-4xl">Olá, o que gostaria de anunciar ?</h1>

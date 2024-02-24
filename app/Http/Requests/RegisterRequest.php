@@ -22,7 +22,7 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "username" => [
+            "name" => [
                 "required"
             ],
             "email" => [
@@ -33,20 +33,17 @@ class RegisterRequest extends FormRequest
                 "required",
                 "confirmed"
             ],
-            "password_confirmation" => [
-                "required"
-            ]
         ];
     }
 
     public function messages() :array
     {
         return [
-            "username.required" => "Nome de usuário é obrigatório",
+            "name.required" => "Nome de usuário obrigatório",
             "email.required" => "Email é obrigatório",
             "email.unique" => "Email já cadastrado",
-            "password" => "A senha é obrigatório",
-            "password_confirmation" => "O campo de confirmação de senha é obrigatorio"
+            "password" => "A Senha é obrigatório",
+            "password.confirmed" => "As senhas  não conferem."
         ];
     }
 }

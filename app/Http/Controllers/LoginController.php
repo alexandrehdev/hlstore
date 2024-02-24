@@ -11,18 +11,15 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view("login");
+        return view("auth.login");
     }
 
     public function login(LoginRequest $request)
     {
-    
-        if(
-            Auth::attempt([
-                'email' => $request->validated()["email"], 
-                "password" => $request->validated()["password"]]
-            )){
-                return redirect()->route("home");
+        $data = $request->validated();
+        
+        if(Auth::attempt(['email' => $data["email"], "password" => $data["password"]])){
+            return redirect()->route("home");
         }else{
             return back()->with("fail","Conta inexistente, verifique novamente.");
         }

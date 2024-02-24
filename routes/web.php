@@ -22,18 +22,29 @@ use App\Http\Controllers\ProductController;
 Route::get('/',[HomeController::class,'index'])->name('home');
 
 
+Route::group(['prefix' => "cadastro",'as' => 'register.'],function(){
+    Route::get("/",[RegisterController::class, 'index'])->name('index');
+    Route::post("/cadastrar",[RegisterController::class, 'store'])->name('save');
+});
 
-Route::get("/cadastro",[RegisterController::class, 'index'])->name('register');
-Route::post("/cadastrar",[RegisterController::class, 'store'])->name('user.store');
-Route::get("/login",[LoginController::class, 'index'])->name('login');
-Route::post("/",[LoginController::class, 'login'])->name('check.login');
-Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::group(['prefix' => 'login','as'=>'login.'], function(){
+    Route::get('/', [LoginController::class,'index'])->name('index');
+    Route::post("/auth",[LoginController::class, 'login'])->name('auth');
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+});
 
 
-Route::group(['prefix' => 'publicar', 'as' => 'product.', "middleware" => "auth"],function() {
+Route::group(['prefix' => 'publicar', 'as' => 'product.'],function() {
     Route::get('/', [ProductController::class,'create'])->name('create');
     Route::post('/publicar', [ProductController::class,'store'])->name('store');
-
 });
+
+Route::get('/configuracoes',function(){
+    return view('settings.index');
+})->name('settings');
+
+Route::get('/perguntas_frequentes',function(){
+    return view('faq.index');
+})->name('faq');
 
 Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');
