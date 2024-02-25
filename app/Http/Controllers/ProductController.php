@@ -14,9 +14,9 @@ use Illuminate\Contracts\View\View;
 class ProductController extends Controller
 {
     
-    public function create()
+    public function index()
     {
-        return view('product.create');
+        return view('product.index');
     }
 
     public function store(StoreProductRequest $request, StoreProduct $store_product) :RedirectResponse

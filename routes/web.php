@@ -34,8 +34,8 @@ Route::group(['prefix' => 'login','as'=>'login.'], function(){
 });
 
 
-Route::group(['prefix' => 'publicar', 'as' => 'product.'],function() {
-    Route::get('/', [ProductController::class,'create'])->name('create');
+Route::group(['prefix' => 'produtos', 'as' => 'product.'],function() {
+    Route::get('/', [ProductController::class,'index'])->name('index');
     Route::post('/publicar', [ProductController::class,'store'])->name('store');
 });
 
@@ -46,5 +46,10 @@ Route::get('/configuracoes',function(){
 Route::get('/perguntas_frequentes',function(){
     return view('faq.index');
 })->name('faq');
+
+
+Route::get('/presentation', function(){
+    return view('presentation.index');
+})->name('presentation');
 
 Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');
