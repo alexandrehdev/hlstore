@@ -54,7 +54,7 @@
                 <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl">Login</h2>
                 <p class="mt-2 text-base text-gray-600">Não possui uma conta? <a href="{{ route('register.index') }}" title="" class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline">Criar uma conta</a></p>
                 
-                <form action="{{ route('login.auth') }}" method="POST" class="mt-8">
+                <form action="{{ route('auth') }}" method="POST" class="mt-8">
     
                     @csrf
                     <div class="space-y-5">

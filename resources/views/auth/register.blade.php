@@ -53,7 +53,7 @@
         <div class="flex items-center justify-center px-4 py-10 bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-24">
             <div class="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
                 <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl">Cadastro</h2>
-                <p class="mt-2 text-base text-gray-600">Já possui uma conta? <a href="{{ route('login.index') }}" title="" class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline">Login</a></p>
+                <p class="mt-2 text-base text-gray-600">Já possui uma conta? <a href="{{ route('login') }}" title="" class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline">Login</a></p>
                 
                 @session('success')
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">

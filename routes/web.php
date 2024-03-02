@@ -27,14 +27,14 @@ Route::group(['prefix' => "cadastro",'as' => 'register.'],function(){
     Route::post("/cadastrar",[RegisterController::class, 'store'])->name('save');
 });
 
-Route::group(['prefix' => 'login','as'=>'login.'], function(){
-    Route::get('/', [LoginController::class,'index'])->name('index');
-    Route::post("/auth",[LoginController::class, 'login'])->name('auth');
-    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
-});
+
+Route::get('/login', [LoginController::class,'index'])->name('login');
+Route::post("/auth",[LoginController::class, 'login'])->name('auth');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
-Route::group(['prefix' => 'produtos', 'as' => 'product.'],function() {
+
+Route::group(['prefix' => 'produtos', 'as' => 'product.','middleware' => 'auth'],function() {
     Route::get('/', [ProductController::class,'index'])->name('index');
     Route::post('/publicar', [ProductController::class,'store'])->name('store');
 });

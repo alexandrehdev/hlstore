@@ -20,8 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            ProductSeeder::class,
-            UserSeeder::class
+            OwnerSeeder::class,
+            AdministratorSeeder::class,
+            ClientSeeder::class,
+            RolesSeeder::class
         ]);
     }
 }

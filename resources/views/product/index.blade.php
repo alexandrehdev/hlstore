@@ -5,10 +5,10 @@
 
 <div>
 
-    <div class="grid grid-cols-3 gap-4 h-screen mt-32 place-items-center">
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 h-screen w-screen place-items-center">
 
         @foreach (range(1,10) as $index => $num )
-        <div class="relative m-64 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+        <div class="relative my-56 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
               <img class="object-cover" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="product image" />
               <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
