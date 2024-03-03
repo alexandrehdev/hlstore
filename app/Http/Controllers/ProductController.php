@@ -19,6 +19,11 @@ class ProductController extends Controller
         return view('product.index');
     }
 
+    public function create()
+    {
+        return view('product.create');
+    }
+
     public function store(StoreProductRequest $request, StoreProduct $store_product) :RedirectResponse
     {
         $data = $request->validated();

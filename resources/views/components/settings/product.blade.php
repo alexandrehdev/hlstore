@@ -1,36 +1,9 @@
 <div class="col-span-8 overflow-hidden rounded-xl bg-gray-50 px-8 shadow">
     <div class="border-b pt-4 pb-8">
-      <h1 class="py-2 text-2xl font-semibold">Cadastrar Produto</h1>
-      <p class="font- text-slate-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+      <h1 class="py-2 text-2xl font-semibold">Customização do Sistema</h1>
+      <p class="font- text-slate-600">Adicione Textos, Banners, Comportamentos... Deixando o sistema com a sua cara.</p>
     </div>
-    <div>
-      <div class="px-4 pt-12 pb-8">
-        <div class="mx-auto w-full max-w-lg">
-          <div class="relative">
-            <ul class="relative flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <li class="flex space-x-4 text-left">
-                <a class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-sm font-semibold text-white" href="#">1</a>
-                <span class="text-sm font-semibold text-amber-600">Descrição</span>
-              </li>
-              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4 text-gray-400 sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-              <li class="flex space-x-4 text-left">
-                <a class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-sm font-semibold text-white ring ring-amber-500 ring-offset-2" href="#">2</a>
-                <span class="text-sm font-semibold text-amber-600">Billing Information</span>
-              </li>
-              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4 text-gray-400 sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-              <li class="flex space-x-4 text-left">
-                <a class="shrink-0 flex h-6 w-6 items-center justify-center rounded-full bg-gray-400 text-sm font-semibold text-white" href="#">3</a>
-                <span class="text-sm font-semibold text-gray-500">Get Started</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+   
     <div class="grid border-b py-6 sm:grid-cols-2">
       <div class="">
         <h2 class="text-lg font-semibold leading-4 text-slate-700">Comments</h2>

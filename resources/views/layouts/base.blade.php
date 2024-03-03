@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css','resources/js/main.js'])
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
     
-    <title>HLStore</title>
+    <title>@yield('title')</title>
 </head>
 <body class="h-full w-full">    
     

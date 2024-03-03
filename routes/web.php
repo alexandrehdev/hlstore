@@ -36,14 +36,15 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'produtos', 'as' => 'product.','middleware' => 'auth'],function() {
     Route::get('/', [ProductController::class,'index'])->name('index');
+    Route::get('/vender', [ProductController::class, 'create'])->name('create');
     Route::post('/publicar', [ProductController::class,'store'])->name('store');
 });
 
 Route::get('/configuracoes',function(){
     return view('settings.index');
-})->name('settings');
+})->middleware('auth')->name('settings');
 
-Route::get('/perguntas_frequentes',function(){
+Route::get('/ajuda',function(){
     return view('faq.index');
 })->name('faq');
 

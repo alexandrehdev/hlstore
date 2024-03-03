@@ -4,16 +4,17 @@
 @section('content')
 @include('partials.header')
 
-<div class="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto" x-data="{ account : true, product : false, integration: false}">
+<div class="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto" x-data="{ account : true, product : false, integration: false, faq : false}">
   <h1 class="border-b py-6 text-4xl font-semibold">Configurações</h1>
   <div class="grid grid-cols-8 pt-3 sm:grid-cols-10">
 
 
     <div class="col-span-2 hidden sm:block">
       <ul>
-        <li @click="account = false; product = true; integration= false" :class="product ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Produto</li>
-        <li @click="account = true; product = false; integration= false" :class="account ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Conta</li>
-        <li @click="account = false; product = false; integration= true" :class="integration ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Integrações</li>
+        <li @click="account = false; product = true; faq = false; integration= false" :class="product ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Geral</li>
+        <li @click="account = true; product = false; faq = false; integration= false" :class="account ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Conta</li>
+        <li @click="account = false; product = false; faq = false; integration= true" :class="integration ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Integrações</li>
+        <li @click="account = false; product = false; faq = true; integration= false" :class="faq ? ' text-blue-700 border-l-blue-700' : ''" class="mt-5 border-l-2 cursor-pointer px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700">Perguntas Frequentes</li>
       </ul>
     </div>
 
@@ -25,11 +26,11 @@
       <x-settings.account />
     </template>
     
-
     {{-- INTEGRATION PAGE --}}
     <template x-if="integration">
         <x-settings.integration />
     </template>
+
 
     <template x-if="product">
         <x-settings.product />

@@ -1,5 +1,6 @@
 @extends('layouts.base')
 
+@section('title', 'Produtos')
 @section('content')
 @include('partials.header')
 

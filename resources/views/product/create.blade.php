@@ -1,75 +1,50 @@
 @extends('layouts.base')
-
+@section('title','Publicar')
+@vite(['resources/js/scripts/alpine.js'])
 @section('content')
     @include('partials.header')
-    <div class=" bg-indigo-500 h-1/4">
-        <div class="flex justify-center top-28 relative z-50  p-0 items-center">
-            <h1 class="text-white uppercase text-4xl">Olá, o que gostaria de anunciar ?</h1>
+    
+
+    <div class="mx-auto max-w-screen-lg bg-blue-500 p-8 text-white md:flex md:items-center md:justify-around md:p-16 lg:rounded-xl">
+        <div class="mr-10 mb-10 md:mb-0">
+          <h2 class="mb-4 max-w-lg text-3xl font-bold sm:text-4xl">Ola! Qual o tipo do produto que você deseja vender?</h2>
         </div>
-    </div>
+      </div>
+    
 
-    <div class="flex justify-center items-center h-screen">
-      <div>
-        <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
-          @csrf
+      
+        <div class="flex py-20 items-center justify-center" x-data="{ type : '', firstStep : true, secondStep : false }">
+            <form method="" action="" >
 
-            <div class="mb-6">
-                <label for="user" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuário</label>
-                <input type="user" id="user"
-                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    disabled value="{{ Illuminate\Support\Facades\Auth::user()->name }}">
-            </div>
+                <template x-if="firstStep">
+                    <x-products.form.choice.choice-type/>
+                </template>
 
-            <div class="mb-6">
-                <label for="product_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome do Produto</label>
-                <input type="text" id="product_name" name="name"
-                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    autocomplete="off" placeholder="Ex: Celular">
-            </div>
+                <div x-show="secondStep">
+                    <div x-show="type == 'product' ? true : false" x-transition>
+                        <x-products.form.type.product-solid />
+                    </div>
 
-            <div class="mb-6">
-                <label for="product_price"  class="block mb-2 text-sm font-medium money text-gray-900 dark:text-white">Preço do Produto</label>
-                <input type="text" id="product_price" name="price"
-                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    autocomplete="off" placeholder="R$ 0,00">
-            </div>
+                    <div x-show="type == 'vehicle' ? true : false" x-transition>
+                        <x-products.form.type.vehicle />
+                    </div>
 
-            <div class="mb-6">
-                <label for="countries"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
-                <select id="countries" name="category"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Escolha a Categoria</option>
-                    <option value="clothes">Roupas</option>
-                    <option value="eletronic">Eletronicos</option>
-                    <option value="vehicle">Veiculos</option>
-                    <option value="properties">Imóveis</option>
-                </select>
-            </div>
+                    <div x-show="type == 'digital' ? true : false" x-transition>
+                        <x-products.form.type.digital />
+                    </div>
+                </div>
 
-            <div class="mb-6">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
-                    
-                <input
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="file_input" name="file" type="file">
-            </div>
-
-            <div class="mb-6">
-                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrição</label>
-                <textarea id="message" name="description" rows="4"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Escreva uma descrição do produto aqui."></textarea>
-            </div>
             
-            <input type="hidden" name="user_id" value="{{ getLoggedUser()->id }}">
 
-            <div class="mb-6 flex justify-center">
-                <button type="submit"class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Publicar   
-                </button>
+                <div class="group flex w-full cursor-pointer items-center justify-center mt-10 rounded-md bg-indigo-700 mt- px-6 py-2 text-white transition" x-show=firstStep>
+                    <button type="button" @click="firstStep = ! firstStep ; secondStep = true" class="group flex w-full items-center justify-center rounded py-1 text-center font-bold"> Continuar </button>
+                    <svg class="flex-0 ml-4 h-6 w-6 transition-all group-hover:ml-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
             </div>
         </form>
-      </div>
     </div>
+
+    
 @endsection
