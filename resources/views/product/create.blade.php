@@ -3,110 +3,201 @@
 @vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js'])
 @section('content')
     @include('partials.header')
-    
-    <div class="relative mx-auto w-full bg-white">
-        <div class="grid min-h-screen grid-cols-10">
-          <div class="col-span-full py-6 px-4 sm:py-12 lg:col-span-6 lg:py-24">
-            <div class="mx-auto w-full max-w-lg">
-              <h1 class="relative text-2xl font-medium text-gray-700 sm:text-3xl">Detalhes do Produto<span class="mt-2 block h-1 w-10 bg-sky-600 sm:w-20"></span></h1>
 
-              <form action="" class="mt-10 flex flex-col space-y-4">
-                <div>
-                    <label for="email" class="text-xs font-semibold text-gray-500">Nome</label>
-                    <input type="email" id="email" name="email" placeholder="john.capler@fang.com" class="mt-1 block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500" />
-                </div>
-                <div id="editor">
-                    <label for="text-xs font-semibold text-gray-500">Descrição do Produto</label>
-                    <textarea name="" placeholder="Descrição do Produto" cols="70" rows="50"></textarea>
-                </div>
-                <div class="relative">
-                    <label for="card-number" class="text-xs font-semibold text-gray-500">Card number</label>
-                    <input type="text" id="card-number" name="card-number" placeholder="1234-5678-XXXX-XXXX" class="block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 pr-10 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500" /><img src="/images/uQUFIfCYVYcLK0qVJF5Yw.png" alt="" class="absolute bottom-3 right-3 max-h-4" /></div>
-                <div>
-                  <p class="text-xs font-semibold text-gray-500">Expiration date</p>
-                  <div class="mr-6 flex flex-wrap">
-                    <div class="my-1">
-                      <label for="month" class="sr-only">Select expiration month</label
-                      ><select name="month" id="month" class="cursor-pointer rounded border-gray-300 bg-gray-50 py-3 px-2 text-sm shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500">
-                        <option value="">Month</option>
-                      </select>
+    <div x-data="{ firstStep: true, secondStep: false }">
+      <div class="py-16 bg-gray-50 overflow-hidden">
+        <div x-show="secondStep" class="fixed">
+         <button @click="secondStep = false; firstStep = true" class="bg-sky-300 mb-10 hover:bg-sky-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 p-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>          
+          <span>Voltar</span>
+        </button>
+        </div>
+        <div class="container m-auto px-6 space-y-8 text-gray-500 md:px-12" x-show="firstStep" x-transition>
+            <div>
+                <span class="text-gray-600 text-lg font-semibold">Escolha o Tipo</span>
+                <h2 class="mt-4 text-2xl text-gray-900 font-bold md:text-4xl">Qual o tipo de produto que deseja vender ?<br class="lg:block" hidden></h2>
+            </div>
+            <div class="mt-16 grid border divide-x divide-y rounded-xl overflow-hidden sm:grid-cols-2 lg:divide-y-0 lg:grid-cols-3 xl:grid-cols-4">
+                <div class="relative group m-2 bg-white cursor-pointer transition hover:z-[1] hover:shadow-2xl">
+                    <div class="relative p-8 space-y-8" @click="firstStep = false; secondStep = true">
+                        <img src="https://www.svgrepo.com/show/530225/cell-phone.svg" class="w-14" width="512" height="512" alt="burger illustration">
+                        
+                        <div class="space-y-2">
+                            <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Produtos</h5>
+                            <p class="text-sm text-gray-600">Ex: Computadores, Periféricos, Roupas...</p>
+                        </div>
+                        <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
+                            <span class="text-sm"></span>
+                            <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
+                        </a>
                     </div>
-                    <div class="my-1 ml-3 mr-6">
-                      <label for="year" class="sr-only">Select expiration year</label
-                      ><select name="year" id="year" class="cursor-pointer rounded border-gray-300 bg-gray-50 py-3 px-2 text-sm shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500">
-                        <option value="">Year</option>
-                      </select>
+                </div>
+                <div class="relative group m-2 bg-white cursor-pointer transition hover:z-[1] hover:shadow-2xl">
+                    <div class="relative p-8 space-y-8">
+                        <img src="https://www.svgrepo.com/show/530235/transportation.svg" class="w-14" width="512" height="512" alt="burger illustration">
+                        
+                        <div class="space-y-2">
+                            <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Veiculos</h5>
+                            <p class="text-sm text-gray-600">Ex: Carros, Motos, Peças no Geral...</p>
+                        </div>
+                        <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
+                            <span class="text-sm"></span>
+                            <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
+                        </a>
                     </div>
-                    <div class="relative my-1"><label for="security-code" class="sr-only">Security code</label><input type="text" id="security-code" name="security-code" placeholder="Security code" class="block w-36 rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500" /></div>
+                </div>
+                <div class="relative group  m-2 bg-white cursor-pointer transition hover:z-[1] hover:shadow-2xl">
+                    <div class="relative p-8 space-y-8">
+                        <img src="https://tailus.io/sources/blocks/stacked/preview/images/avatars/package-delivery.png" class="w-10" width="512" height="512" alt="burger illustration">
+                        
+                        <div class="space-y-2">
+                            <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Digital</h5>
+                            <p class="text-sm text-gray-600">Cursos, Sistemas, Serviços.</p>
+                        </div>
+                        <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
+                            <span class="text-sm"></span>
+                            <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+      </div>
+
+      <div x-show="secondStep" class="h-full w-full flex justify-center" x-transition>
+          <div>
+            <main class="flex-1 md:p-0 lg:pt-8 lg:px-8 md:ml-24 flex flex-col">
+              <section class="bg-cream-lighter p-4 shadow">
+              <div class="md:flex">
+                <h2 class="md:w-1/3 uppercase tracking-wide text-sm sm:text-lg mb-6">Detalhes do Produto</h2>
+              </div>
+              <form>
+                <div class="md:flex mb-8">
+                  <div class="md:w-1/3">
+                    <legend class="uppercase tracking-wide text-sm">Location</legend>
+                    <p class="text-xs font-light text-red">This entire section is required.</p>
+                  </div>
+                <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
+                  <div class="mb-4">
+                    <label class="block uppercase tracking-wide text-xs font-bold">Name</label>
+                    <input class="w-full shadow-inner p-4 border-0" type="text" name="name" placeholder="Acme Mfg. Co.">
+                  </div>
+                  <div class="md:flex mb-4">
+                    <div class="md:flex-1 md:pr-3">
+                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Street Address</label>
+                      <input class="w-full shadow-inner p-4 border-0" type="text" name="address_street" placeholder="555 Roadrunner Lane">
+                    </div>
+                    <div class="md:flex-1 md:pl-3">
+                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Building/Suite No.</label>
+                      <input class="w-full shadow-inner p-4 border-0" type="text" name="address_number" placeholder="#3">
+                      <span class="text-xs mb-4 font-thin">We lied, this isn't required.</span>
+                    </div>
+                  </div>
+                  <div class="md:flex mb-4">
+                    <div class="md:flex-1 md:pr-3">
+                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Latitude</label>
+                        <input class="w-full shadow-inner p-4 border-0" type="text" name="lat" placeholder="30.0455542">
+                      </div>
+                      <div class="md:flex-1 md:pl-3">
+                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Longitude</label>
+                        <input class="w-full shadow-inner p-4 border-0" type="text" name="lon" placeholder="-99.1405168">
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div><label for="card-name" class="sr-only">Card name</label><input type="text" id="card-name" name="card-name" placeholder="Name on the card" class="mt-1 block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-teal-500" /></div>
-              </form>
-              <p class="mt-10 text-center text-sm font-semibold text-gray-500">By placing this order you agree to the <a href="#" class="whitespace-nowrap text-teal-400 underline hover:text-teal-600">Terms and Conditions</a></p>
-              <button type="submit" class="mt-4 inline-flex w-full items-center justify-center rounded bg-teal-600 py-2.5 px-4 text-base font-semibold tracking-wide text-white text-opacity-80 outline-none ring-offset-2 transition hover:text-opacity-100 focus:ring-2 focus:ring-teal-500 sm:text-lg">Place Order</button>
-            </div>
+                <div class="md:flex mb-8">
+                  <div class="md:w-1/3">
+                    <legend class="uppercase tracking-wide text-sm">Contact</legend>
+                  </div>
+                  <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
+                    <div class="mb-4">
+                      <label class="block uppercase tracking-wide text-xs font-bold">Phone</label>
+                      <input class="w-full shadow-inner p-4 border-0" type="tel" name="phone" placeholder="(555) 555-5555">
+                    </div>
+                    <div class="mb-4">
+                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">URL</label>
+                      <input class="w-full shadow-inner p-4 border-0" type="url" name="url" placeholder="acme.co">
+                    </div>
+                    <div class="mb-4">
+                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Email</label>
+                      <input class="w-full shadow-inner p-4 border-0" type="email" name="email" placeholder="contact@acme.co">
+                    </div>
+                  </div>
+                </div>
+                <div class="md:flex">
+                  <div class="md:w-1/3">
+                    <legend class="uppercase tracking-wide text-sm">Social</legend>
+                  </div>
+                  <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
+                    <div class="md:flex mb-4">
+                      <div class="md:flex-1 md:pr-3">
+                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Facebook</label>
+                        <div class="w-full flex">
+                          <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">facebook.com/</span>
+                          <input class="flex-1 shadow-inner p-4 border-0" type="text" name="facebook" placeholder="acmeco">
+                        </div>
+                      </div>
+                      <div class="md:flex-1 md:pl-3 mt-2 md:mt-0">
+                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Twitter</label>
+                        <div class="w-full flex">
+                          <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">twitter.com/</span>
+                          <input class="flex-1 shadow-inner p-4 border-0" type="text" name="twitter" placeholder="acmeco">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="md:flex mb-4">
+                      <div class="md:flex-1 md:pr-3">
+                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Instagram</label>
+                        <div class="w-full flex">
+                          <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">instagram.com/</span>
+                          <input class="flex-1 shadow-inner p-4 border-0" type="text" name="instagram" placeholder="acmeco">
+                        </div>
+                      </div>
+                      <div class="md:flex-1 md:pl-3 mt-2 md:mt-0">
+                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Yelp</label>
+                          <div class="w-full flex">
+                            <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">yelp.com/</span>
+                            <input class="flex-1 shadow-inner p-4 border-0" type="text" name="yelp" placeholder="acmeco">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:flex mb-6">
+                    <div class="md:w-1/3">
+                      <legend class="uppercase tracking-wide text-sm">Description</legend>
+                    </div>
+                    <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
+                      <textarea class="w-full shadow-inner p-4 border-0" placeholder="We build fine acmes." rows="6"></textarea>
+                    </div>
+                  </div>
+                  <div class="md:flex mb-6">
+                    <div class="md:w-1/3">
+                      <legend class="uppercase tracking-wide text-sm">Cover Image</legend>
+                    </div>
+                    <div class="md:flex-1 px-3 text-center">
+                      <div class="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative">
+                        <input class="opacity-0 absolute pin-x pin-y" type="file" name="cover_image">
+                        Add Cover Image
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:flex mb-6 border border-t-1 border-b-0 border-x-0 border-cream-dark">
+                    <div class="md:flex-1 px-3 text-center md:text-right">
+                      <input type="hidden" name="sponsor" value="0">
+                      <input class="button text-cream-lighter bg-brick hover:bg-brick-dark" type="submit" value="Create Location">
+                    </div>
+                  </div>
+                </form>
+              </section>
+              </main>
           </div>
-
-          <div class="relative col-span-full flex flex-col py-6 pl-8 pr-4 sm:py-12 lg:col-span-4 lg:py-24">
-            
-            <div>
-              <div class="absolute inset-0 h-full w-full opacity-95"></div>
-            </div>
-            <div class="relative">
-              <ul class="space-y-5">
-                <li class="flex justify-between w-full">
-                <div class="relative">
-                    <input class="peer hidden" id="radio_1" type="radio" name="radio" checked />
-                    <span class="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-indigo-500"></span>
-                    <label class="flex cursor-pointer w-44 flex-col rounded-lg border border-gray-300 p-4 peer-checked:border-4 peer-checked:border-indigo-700" for="radio_1">
-                        <span class="text-xs font-semibold uppercase">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                            </svg> 
-                        </span>
-                        <span class="mt-2 text-xl font-bold">Produtos</span>
-                    </label>
-                    </div>
-                </li>
-                <li class="flex justify-between">
-                    <div class="relative">
-                        <input class="peer hidden" id="radio_2" type="radio" name="radio" />
-                        <span class="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-indigo-500"></span>
-                    
-                        <label class="flex cursor-pointer w-44 flex-col rounded-lg border border-gray-300 p-4 peer-checked:border-4 peer-checked:border-indigo-700" for="radio_2">
-                            <span class="text-xs font-semibold uppercase">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                                  </svg>
-                                  
-                            </span>
-                            <span class="mt-2 text-xl font-bold">Veiculos</span>
-                        </label>
-                    </div>
-                </li>
-
-                <li class="flex justify-between">
-                    <div class="relative">
-                        <input class="peer hidden" id="radio_3" type="radio" name="radio" />
-                        <span class="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-indigo-500"></span>
-                    
-                        <label class="flex cursor-pointer w-44 flex-col rounded-lg border border-gray-300 p-4 peer-checked:border-4 peer-checked:border-indigo-700" for="radio_3">
-                            <span class="text-xs font-semibold uppercase">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                                  </svg>
-                                  
-                            </span>
-                            <span class="mt-2 text-xl font-bold">Digital</span>
-                        </label>
-                    </div>
-                </li>
-              </ul>
-              
-        </div>
       </div>
-      
-      
+    </div>
+
+
+  </div>
 
     
 @endsection
