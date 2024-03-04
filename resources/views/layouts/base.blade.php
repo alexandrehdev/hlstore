@@ -15,6 +15,9 @@
 <body class="h-full w-full">    
     
     @yield('content')
+
+    @include('partials.bell-modal')
+
     @yield('scripts')
 
     <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
