@@ -1,13 +1,21 @@
 @extends('layouts.base')
 @section('title','Publicar')
-@vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js'])
+@vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js', 'resources/js/scripts/dropzone.js'])
+
+@section('meta-data')
+
+<meta property="storeProductRoute" content="{{ route('product.store') }}">
+<meta property="csrf-token" content="{{ csrf_token() }}">
+
+@endsection
+
 @section('content')
     @include('partials.header')
 
-    <div x-data="{ firstStep: true, secondStep: false }">
+    <div x-data="{ firstStep: $persist(true), secondStep: $persist(false) }">
       <div class="py-16 bg-gray-50 overflow-hidden">
-        <div x-show="secondStep" class="fixed">
-         <button @click="secondStep = false; firstStep = true" class="bg-sky-300 mb-10 hover:bg-sky-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+        <div x-show="secondStep" class="">
+         <button @click="secondStep = false; firstStep = true" class="mb-10  text-gray-800 font-bold py-2  rounded inline-flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-9 h-9 p-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>          
@@ -64,140 +72,192 @@
                 </div>
             </div>
       </div>
+      
+      <div x-show="secondStep" x-init="$watch('secondStep', value => initDropzone() )" class=" w-full p-2 flex justify-center" x-transition>
+        <form enctype="multipart/form-data">
+          <div class="space-y-12">
+            <div class="border-b border-gray-900/10 pb-12">
+              <h2 class="text-base font-semibold leading-7 text-gray-900">Detalhes do Produto</h2>
+              <p class="mt-1 text-sm leading-6 text-gray-600">Essas informações será mostrada publicamente, então tenha cuidado com o que digitar.</p>
+        
+              <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" >
+                <div class="sm:col-span-4">
+                  <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Nome</label>
+                  <div class="mt-2">
+                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      {{-- <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span> --}}
+                      <input type="text" name="username" id="username" autocomplete="username" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Ex: IPhone PRO MAX">
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="col-span-full mb-32">
+                  <label for="about" class="block mb-4 text-sm font-medium leading-6 text-gray-900">Decrição (obrigatório)</label>
+                  <div class="mt-2" id="editor">
+                    <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                  </div>
+                  <p class="mt-3 text-sm leading-6 text-gray-600">Faça uma descrição do seu produto.</p>
+                </div>
 
-      <div x-show="secondStep" class="h-full w-full flex justify-center" x-transition>
-          <div>
-            <main class="flex-1 md:p-0 lg:pt-8 lg:px-8 md:ml-24 flex flex-col">
-              <section class="bg-cream-lighter p-4 shadow">
-              <div class="md:flex">
-                <h2 class="md:w-1/3 uppercase tracking-wide text-sm sm:text-lg mb-6">Detalhes do Produto</h2>
+                <div class="col-span-full">
+                  <label class="text-sm mb-24 font-medium leading-6 text-gray-900">Imagens (obrigatório)</label>
+                  <div class="dropzone" id="dropzone">
+                 
+                  </div>
+                </div>
+                
+
               </div>
-              <form>
-                <div class="md:flex mb-8">
-                  <div class="md:w-1/3">
-                    <legend class="uppercase tracking-wide text-sm">Location</legend>
-                    <p class="text-xs font-light text-red">This entire section is required.</p>
-                  </div>
-                <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
-                  <div class="mb-4">
-                    <label class="block uppercase tracking-wide text-xs font-bold">Name</label>
-                    <input class="w-full shadow-inner p-4 border-0" type="text" name="name" placeholder="Acme Mfg. Co.">
-                  </div>
-                  <div class="md:flex mb-4">
-                    <div class="md:flex-1 md:pr-3">
-                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Street Address</label>
-                      <input class="w-full shadow-inner p-4 border-0" type="text" name="address_street" placeholder="555 Roadrunner Lane">
-                    </div>
-                    <div class="md:flex-1 md:pl-3">
-                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Building/Suite No.</label>
-                      <input class="w-full shadow-inner p-4 border-0" type="text" name="address_number" placeholder="#3">
-                      <span class="text-xs mb-4 font-thin">We lied, this isn't required.</span>
-                    </div>
-                  </div>
-                  <div class="md:flex mb-4">
-                    <div class="md:flex-1 md:pr-3">
-                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Latitude</label>
-                        <input class="w-full shadow-inner p-4 border-0" type="text" name="lat" placeholder="30.0455542">
-                      </div>
-                      <div class="md:flex-1 md:pl-3">
-                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Longitude</label>
-                        <input class="w-full shadow-inner p-4 border-0" type="text" name="lon" placeholder="-99.1405168">
-                      </div>
-                    </div>
+            </div>
+        
+            <div class="border-b border-gray-900/10 pb-12">
+              <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+              <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+        
+              <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                  <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                  <div class="mt-2">
+                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                   </div>
                 </div>
-                <div class="md:flex mb-8">
-                  <div class="md:w-1/3">
-                    <legend class="uppercase tracking-wide text-sm">Contact</legend>
-                  </div>
-                  <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
-                    <div class="mb-4">
-                      <label class="block uppercase tracking-wide text-xs font-bold">Phone</label>
-                      <input class="w-full shadow-inner p-4 border-0" type="tel" name="phone" placeholder="(555) 555-5555">
-                    </div>
-                    <div class="mb-4">
-                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">URL</label>
-                      <input class="w-full shadow-inner p-4 border-0" type="url" name="url" placeholder="acme.co">
-                    </div>
-                    <div class="mb-4">
-                      <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Email</label>
-                      <input class="w-full shadow-inner p-4 border-0" type="email" name="email" placeholder="contact@acme.co">
-                    </div>
+        
+                <div class="sm:col-span-3">
+                  <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                  <div class="mt-2">
+                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                   </div>
                 </div>
-                <div class="md:flex">
-                  <div class="md:w-1/3">
-                    <legend class="uppercase tracking-wide text-sm">Social</legend>
+        
+                <div class="sm:col-span-4">
+                  <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+                  <div class="mt-2">
+                    <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                   </div>
-                  <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
-                    <div class="md:flex mb-4">
-                      <div class="md:flex-1 md:pr-3">
-                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Facebook</label>
-                        <div class="w-full flex">
-                          <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">facebook.com/</span>
-                          <input class="flex-1 shadow-inner p-4 border-0" type="text" name="facebook" placeholder="acmeco">
-                        </div>
+                </div>
+        
+                <div class="sm:col-span-3">
+                  <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
+                  <div class="mt-2">
+                    <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>Mexico</option>
+                    </select>
+                  </div>
+                </div>
+        
+                <div class="col-span-full">
+                  <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
+                  <div class="mt-2">
+                    <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+        
+                <div class="sm:col-span-2 sm:col-start-1">
+                  <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                  <div class="mt-2">
+                    <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+        
+                <div class="sm:col-span-2">
+                  <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
+                  <div class="mt-2">
+                    <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+        
+                <div class="sm:col-span-2">
+                  <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
+                  <div class="mt-2">
+                    <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="border-b border-gray-900/10 pb-12">
+              <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
+              <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
+        
+              <div class="mt-10 space-y-10">
+                <fieldset>
+                  <legend class="text-sm font-semibold leading-6 text-gray-900">By Email</legend>
+                  <div class="mt-6 space-y-6">
+                    <div class="relative flex gap-x-3">
+                      <div class="flex h-6 items-center">
+                        <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                       </div>
-                      <div class="md:flex-1 md:pl-3 mt-2 md:mt-0">
-                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Twitter</label>
-                        <div class="w-full flex">
-                          <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">twitter.com/</span>
-                          <input class="flex-1 shadow-inner p-4 border-0" type="text" name="twitter" placeholder="acmeco">
-                        </div>
+                      <div class="text-sm leading-6">
+                        <label for="comments" class="font-medium text-gray-900">Comments</label>
+                        <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
                       </div>
                     </div>
-                    <div class="md:flex mb-4">
-                      <div class="md:flex-1 md:pr-3">
-                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Instagram</label>
-                        <div class="w-full flex">
-                          <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">instagram.com/</span>
-                          <input class="flex-1 shadow-inner p-4 border-0" type="text" name="instagram" placeholder="acmeco">
-                        </div>
+                    <div class="relative flex gap-x-3">
+                      <div class="flex h-6 items-center">
+                        <input id="candidates" name="candidates" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                       </div>
-                      <div class="md:flex-1 md:pl-3 mt-2 md:mt-0">
-                        <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Yelp</label>
-                          <div class="w-full flex">
-                            <span class="text-xs py-4 px-2 bg-grey-light text-grey-dark">yelp.com/</span>
-                            <input class="flex-1 shadow-inner p-4 border-0" type="text" name="yelp" placeholder="acmeco">
-                          </div>
-                        </div>
+                      <div class="text-sm leading-6">
+                        <label for="candidates" class="font-medium text-gray-900">Candidates</label>
+                        <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
+                      </div>
+                    </div>
+                    <div class="relative flex gap-x-3">
+                      <div class="flex h-6 items-center">
+                        <input id="offers" name="offers" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      </div>
+                      <div class="text-sm leading-6">
+                        <label for="offers" class="font-medium text-gray-900">Offers</label>
+                        <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
                       </div>
                     </div>
                   </div>
-                  <div class="md:flex mb-6">
-                    <div class="md:w-1/3">
-                      <legend class="uppercase tracking-wide text-sm">Description</legend>
+                </fieldset>
+                <fieldset>
+                  <legend class="text-sm font-semibold leading-6 text-gray-900">Push Notifications</legend>
+                  <p class="mt-1 text-sm leading-6 text-gray-600">These are delivered via SMS to your mobile phone.</p>
+                  <div class="mt-6 space-y-6">
+                    <div class="flex items-center gap-x-3">
+                      <input id="push-everything" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      <label for="push-everything" class="block text-sm font-medium leading-6 text-gray-900">Everything</label>
                     </div>
-                    <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
-                      <textarea class="w-full shadow-inner p-4 border-0" placeholder="We build fine acmes." rows="6"></textarea>
+                    <div class="flex items-center gap-x-3">
+                      <input id="push-email" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      <label for="push-email" class="block text-sm font-medium leading-6 text-gray-900">Same as email</label>
                     </div>
-                  </div>
-                  <div class="md:flex mb-6">
-                    <div class="md:w-1/3">
-                      <legend class="uppercase tracking-wide text-sm">Cover Image</legend>
-                    </div>
-                    <div class="md:flex-1 px-3 text-center">
-                      <div class="button bg-gold hover:bg-gold-dark text-cream mx-auto cusor-pointer relative">
-                        <input class="opacity-0 absolute pin-x pin-y" type="file" name="cover_image">
-                        Add Cover Image
-                      </div>
-                    </div>
-                  </div>
-                  <div class="md:flex mb-6 border border-t-1 border-b-0 border-x-0 border-cream-dark">
-                    <div class="md:flex-1 px-3 text-center md:text-right">
-                      <input type="hidden" name="sponsor" value="0">
-                      <input class="button text-cream-lighter bg-brick hover:bg-brick-dark" type="submit" value="Create Location">
+                    <div class="flex items-center gap-x-3">
+                      <input id="push-nothing" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      <label for="push-nothing" class="block text-sm font-medium leading-6 text-gray-900">No push notifications</label>
                     </div>
                   </div>
-                </form>
-              </section>
-              </main>
+                </fieldset>
+              </div>
+            </div>
           </div>
+        
+          <div class="mt-6 flex items-center justify-end gap-x-6">
+            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
+            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Criar</button>
+          </div>
+        </form>
+        
       </div>
-    </div>
 
 
   </div>
 
     
+@endsection
+
+@section('scripts')
+<script>
+  
+  
+  function initDropzone(){
+
+    let storeProductRoute = document.querySelector("meta[property='storeProductRoute']").content;
+    
+  }
+</script>
 @endsection
