@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('title','Publicar')
-@vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js', 'resources/js/scripts/dropzone.js'])
+@vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js', 'resources/js/scripts/dropzone.js', 'resources/js/dump/index.js'])
 
 @section('meta-data')
 
@@ -12,7 +12,7 @@
 @section('content')
     @include('partials.header')
 
-    <div x-data="{ firstStep: $persist(true), secondStep: $persist(false) }">
+    <div x-data="{ firstStep: $persist(true), secondStep: $persist(false)}">
       <div class="py-16 bg-gray-50 overflow-hidden">
         <div x-show="secondStep" class="">
          <button @click="secondStep = false; firstStep = true" class="mb-10  text-gray-800 font-bold py-2  rounded inline-flex items-center">
@@ -73,8 +73,9 @@
             </div>
       </div>
       
-      <div x-show="secondStep" x-init="$watch('secondStep', value => initDropzone() )" class=" w-full p-2 flex justify-center" x-transition>
-        <form enctype="multipart/form-data">
+      <div x-show="secondStep" x-init="$watch('secondStep', value => initDropzone() )" class=" w-full p-2 flex justify-center" x-transition x-data="{ brands : getAllPhoneBrands(), currentBrand : '' }">
+        <form action="{{ route('product.create')  }}" method="POST" enctype="multipart/form-data">
+          @csrf
           <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
               <h2 class="text-base font-semibold leading-7 text-gray-900">Detalhes do Produto</h2>
@@ -86,7 +87,7 @@
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                       {{-- <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span> --}}
-                      <input type="text" name="username" id="username" autocomplete="username" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Ex: IPhone PRO MAX">
+                      <input type="text" name="name" id="username" autocomplete="off" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Ex: IPhone PRO MAX">
                     </div>
                   </div>
                 </div>
@@ -101,8 +102,20 @@
 
                 <div class="col-span-full">
                   <label class="text-sm mb-24 font-medium leading-6 text-gray-900">Imagens (obrigatório)</label>
-                  <div class="dropzone" id="dropzone">
-                 
+                  <div class="dropzone-preview"></div>
+                  <div class="dropzone upload-zone dz-preview dz-file-preview" 
+                      data-url="{{ route('product.store') }}"
+                      data-accepted-files="image/*"
+                      data-csrf-token="{{ csrf_token() }}"
+                      id="dropzone">
+                      <img data-dz-thumbnail />
+                      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                      
+                    <div class="dz-message" data-dz-message>
+                      <span class="dz-message-text">Arraste e solte arquivos</span>
+                      <span class="dz-message-or">ou</span>
+                      <button class="btn btn-primary">SELECIONE</button>
+                  </div>
                   </div>
                 </div>
                 
@@ -111,21 +124,27 @@
             </div>
         
             <div class="border-b border-gray-900/10 pb-12">
-              <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-              <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+              <h2 class="text-base font-semibold leading-7 text-gray-900">Mais algumas informações</h2>
+              <p class="mt-1 text-sm leading-6 text-gray-600">Informações referente ao estado do produto e suas características.</p>
         
               <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-3">
-                  <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
+                  <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Marca</label>
                   <div class="mt-2">
-                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <select id="brand" name="brand" x-model="currentBrand" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                      <template x-for="brand in brands">
+                        <option x-text="brand"></option>
+                      </template>
+                    </select>
                   </div>
                 </div>
         
                 <div class="sm:col-span-3">
-                  <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
+                  <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Modelo</label>
                   <div class="mt-2">
-                    <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <select id="model" name="brand" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                     <option value=""></option>
+                    </select>
                   </div>
                 </div>
         
@@ -251,13 +270,156 @@
 @endsection
 
 @section('scripts')
-<script>
-  
-  
-  function initDropzone(){
 
-    let storeProductRoute = document.querySelector("meta[property='storeProductRoute']").content;
-    
+<script>
+  function getAllPhoneBrands(){
+      return [
+        "Apple",
+          "Samsung",
+          "Xiaomi",
+          "Motorola",
+          "Sony",
+          "Asus",
+      ];
   }
+
+  function getAppleModels() {
+    return {
+        brand: "Apple",
+        models: [
+            "iPhone 13",
+            "iPhone 12",
+            "iPhone SE (2020)",
+            "iPhone 11",
+            "iPhone XR",
+            "iPhone 8",
+            "iPhone 7",
+            "iPhone SE",
+            "iPhone XS",
+            "iPhone X"
+        ]
+    };
+}
+
+// Função para obter modelos de celulares da Samsung
+function getSamsungModels() {
+    return {
+        brand: "Samsung",
+        models: [
+            "Galaxy S21",
+            "Galaxy S20",
+            "Galaxy Note 20",
+            "Galaxy A52",
+            "Galaxy A32",
+            "Galaxy S21 Ultra",
+            "Galaxy Note 10",
+            "Galaxy Z Fold 3",
+            "Galaxy Z Flip 3",
+            "Galaxy A12"
+        ]
+    };
+}
+
+// Função para obter modelos de celulares da Motorola
+function getMotorolaModels() {
+    return {
+        brand: "Motorola",
+        models: [
+            "Moto G Power (2021)",
+            "Moto G Stylus (2021)",
+            "Moto G9 Plus",
+            "Moto G Fast",
+            "Moto E7 Plus",
+            "Moto G Power (2020)",
+            "Moto G Stylus (2020)",
+            "Moto G Pro",
+            "Moto G8 Plus",
+            "Moto G8 Power"
+        ]
+    };
+}
+
+// Função para obter modelos de celulares da Sony
+function getSonyModels() {
+    return {
+        brand: "Sony",
+        models: [
+            "Sony Xperia 1 III",
+            "Sony Xperia 5 III",
+            "Sony Xperia 1 II",
+            "Sony Xperia 5 II",
+            "Sony Xperia 10 III",
+            "Sony Xperia 10 II",
+            "Sony Xperia L4",
+            "Sony Xperia XZ3",
+            "Sony Xperia XZ2",
+            "Sony Xperia XA2"
+        ]
+    };
+}
+
+// Função para obter modelos de celulares da Nokia
+function getNokiaModels() {
+    return {
+        brand: "Nokia",
+        models: [
+            "Nokia 9 PureView",
+            "Nokia 8.3 5G",
+            "Nokia 7.2",
+            "Nokia 6.2",
+            "Nokia 5.3",
+            "Nokia 3.4",
+            "Nokia 2.4",
+            "Nokia 1.4",
+            "Nokia 5.4",
+            "Nokia 3.1 Plus"
+        ]
+    };
+}
+
+// Função para obter modelos de celulares da Asus
+function getAsusModels() {
+    return {
+        brand: "Asus",
+        models: [
+            "Asus ZenFone 8",
+            "Asus ZenFone 7 Pro",
+            "Asus ROG Phone 5",
+            "Asus ZenFone 6",
+            "Asus ZenFone 5Z",
+            "Asus ZenFone Max Pro (M2)",
+            "Asus ZenFone Max Plus (M1)",
+            "Asus ZenFone Max (M2)",
+            "Asus ZenFone Live",
+            "Asus ZenFone AR"
+        ]
+    };
+}
+
+// Função para obter modelos de celulares da Xiaomi
+function getXiaomiModels() {
+    return {
+        brand: "Xiaomi",
+        models: [
+            "Xiaomi Mi 11",
+            "Xiaomi Mi 10",
+            "Xiaomi Redmi Note 10",
+            "Xiaomi Redmi Note 9",
+            "Xiaomi Redmi 9",
+            "Xiaomi Poco X3",
+            "Xiaomi Mi 10T",
+            "Xiaomi Mi Note 10",
+            "Xiaomi Redmi Note 8",
+            "Xiaomi Mi 9"
+        ]
+    };
+}
+
+
+
+  
+
 </script>
+
 @endsection
+
