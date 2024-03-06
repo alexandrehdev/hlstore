@@ -21,13 +21,3 @@ let dropzone = new Dropzone("#dropzone", {
     }
 });
 
-
-
-// if(document.querySelector("#dropzone")){
-
-//     let storeProductRoute = document.querySelector("meta[property='storeProductRoute']");
-
-//     let myDropzone = new Dropzone("#dropzone");
-
-//     console.log(storeProductRoute);
-// }

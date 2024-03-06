@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('title','Publicar')
-@vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js', 'resources/js/scripts/dropzone.js', 'resources/js/dump/index.js'])
+@vite(['resources/js/scripts/alpine.js','resources/js/scripts/quill.js', 'resources/js/scripts/dropzone.js'])
 
 @section('meta-data')
 
@@ -73,7 +73,7 @@
             </div>
       </div>
       
-      <div x-show="secondStep" x-init="$watch('secondStep', value => initDropzone() )" class=" w-full p-2 flex justify-center" x-transition x-data="{ brands : getAllPhoneBrands(), currentBrand : '' }">
+      <div x-show="secondStep" x-init="$watch('secondStep', value => initDropzone() )" class=" w-full p-2 flex justify-center" x-transition x-data="{ brands : getAllPhoneBrands(), currentBrand : '', brandsmodels : getBrandsAndModels()}">
         <form action="{{ route('product.create')  }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="space-y-12">
@@ -143,7 +143,9 @@
                   <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Modelo</label>
                   <div class="mt-2">
                     <select id="model" name="brand" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                     <option value=""></option>
+                      <template x-for="brandmodel in brandsmodels">
+                        <option x-text="brandmodel.name == currentBrand ? brandmodel.models : ''"></option>
+                      </template>
                     </select>
                   </div>
                 </div>
@@ -283,9 +285,21 @@
       ];
   }
 
+  function getBrandsAndModels() {
+    return [
+        getAppleModels(),
+        getSamsungModels(),
+        getMotorolaModels(),
+        getSonyModels(),
+        getNokiaModels(),
+        getAsusModels(),
+        getXiaomiModels()
+    ];
+}
+
   function getAppleModels() {
     return {
-        brand: "Apple",
+        name: "Apple",
         models: [
             "iPhone 13",
             "iPhone 12",
@@ -304,7 +318,7 @@
 // Função para obter modelos de celulares da Samsung
 function getSamsungModels() {
     return {
-        brand: "Samsung",
+        name: "Samsung",
         models: [
             "Galaxy S21",
             "Galaxy S20",
@@ -323,7 +337,7 @@ function getSamsungModels() {
 // Função para obter modelos de celulares da Motorola
 function getMotorolaModels() {
     return {
-        brand: "Motorola",
+        name: "Motorola",
         models: [
             "Moto G Power (2021)",
             "Moto G Stylus (2021)",
@@ -342,7 +356,7 @@ function getMotorolaModels() {
 // Função para obter modelos de celulares da Sony
 function getSonyModels() {
     return {
-        brand: "Sony",
+        name: "Sony",
         models: [
             "Sony Xperia 1 III",
             "Sony Xperia 5 III",
@@ -361,7 +375,7 @@ function getSonyModels() {
 // Função para obter modelos de celulares da Nokia
 function getNokiaModels() {
     return {
-        brand: "Nokia",
+        name: "Nokia",
         models: [
             "Nokia 9 PureView",
             "Nokia 8.3 5G",
@@ -380,7 +394,7 @@ function getNokiaModels() {
 // Função para obter modelos de celulares da Asus
 function getAsusModels() {
     return {
-        brand: "Asus",
+        name: "Asus",
         models: [
             "Asus ZenFone 8",
             "Asus ZenFone 7 Pro",
@@ -399,7 +413,7 @@ function getAsusModels() {
 // Função para obter modelos de celulares da Xiaomi
 function getXiaomiModels() {
     return {
-        brand: "Xiaomi",
+        name: "Xiaomi",
         models: [
             "Xiaomi Mi 11",
             "Xiaomi Mi 10",
