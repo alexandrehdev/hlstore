@@ -5,11 +5,35 @@
 @include('partials.header')
 
 <div>
+    {{-- <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)">
+      <div class="md:w-1/2">
+      <p class="font-bold text-sm uppercase">Services</p>
+      <p class="text-3xl font-bold">Multimedia products</p>
+      <p class="text-2xl mb-10 leading-none">Atractive designs for your brand</p>
+      <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact us</a>
+      </div>  
+  </div> --}}
 
-    <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 h-screen w-screen place-items-center">
+  <div class="flex justify-center items-center">
+    <div class="container mx-auto bg-indigo-500 rounded-lg p-14">
+      <form>
+        <h1 class="text-center font-bold text-white text-4xl">Find the perfect domain name</label>
+          <p class="mx-auto font-normal text-sm my-6 max-w-lg">Enter your select domain name and choose any
+            extension name in the next step (choose between .com, .online, .tech, .site, .net, and more)</p>
+          <div class="sm:flex items-center bg-white rounded-lg overflow-hidden px-2 py-1 justify-between">
+            <input class="text-base text-gray-400 flex-grow outline-none px-2" type="text" placeholder="Search your domain name" />
+            <div class="ms:flex items-center px-2 rounded-lg space-x-4 mx-auto ">
+              <button class="bg-indigo-500 text-white text-base rounded-lg px-4 py-3 font-thin">Search</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 place-items-center">
 
         @foreach (range(1,10) as $index => $num )
-        <div class="relative my-56 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+        <div class="relative my-12 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
               <img class="object-cover" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="product image" />
               <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
