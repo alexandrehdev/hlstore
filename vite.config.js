@@ -10,7 +10,7 @@ export default defineConfig({
                  'resources/js/scripts/swiper.js',
                  'resources/css/styles/swiper.js'
                 ],
-            refresh: true,
+            refresh: false,
         }),
     ],
 });

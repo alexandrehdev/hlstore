@@ -18,8 +18,22 @@
 
     @yield('scripts')
 
-    <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{{  asset('js/jquery.inputmask.js') }}"></script>
+    <script src="https://cdn.quilljs.com/1.1.6/quill.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+
+    <script>
+        $(".money").inputmask( 'currency',{ "autoUnmask": true,
+            radixPoint:",",
+            groupSeparator: ".",
+            allowMinus: false,
+            prefix: 'R$ ',
+            digits: 2,
+            digitsOptional: false,
+            rightAlign: false,
+            unmaskAsNumber: true
+        });
+    </script>
 </body>
 </html>
