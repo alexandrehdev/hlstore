@@ -53,4 +53,4 @@ Route::get('/presentation', function(){
     return view('presentation.index');
 })->name('presentation');
 
-Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');
+Route::get('/produto/mostrar', [ProductController::class,'show'])->name('show');
