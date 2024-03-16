@@ -11,8 +11,6 @@
 @section('content')
     @include('partials.header')
 
-    <script src="{{ asset('data/typeProducts.js') }}"></script>
-
     <div x-data="{ type:'', subtype:'', firstStep: $persist(true), secondStep: $persist(false), thirdStep : $persist(false)}">
       <div class="py-8 overflow-hidden">
         <div x-show="secondStep || thirdStep" class="">
@@ -25,7 +23,7 @@
         </div>
 
 
-        <div class="container m-auto px-6 space-y-8 text-gray-500 md:px-12" x-show="firstStep" x-transition.duration.500ms>
+        <div class="container m-auto px-6 space-y-8 text-gray-500 md:px-12" x-show="firstStep">
             <div>
                 <span class="text-gray-600 text-lg font-semibold">Escolha o Tipo</span>
                 <h2 class="mt-4 text-2xl text-gray-900 font-bold md:text-4xl">Qual o tipo de produto que deseja vender ?<br class="lg:block" hidden></h2>
@@ -76,32 +74,20 @@
             </div>
       </div>
       
-      <div x-show="secondStep" x-transition.duration.500ms>
-
-          <div class="grid lg:grid-cols-3  grid-cols-1 place-items-center items-center gap-2 content-center" x-data>
+     
+        <div x-show="secondStep" class="grid lg:grid-cols-3  grid-cols-1 place-items-center items-center gap-2 content-center" x-data>
             
-            <template x-for="product in typeProducts">
-                <div class="w-96 p-6 cursor-pointer bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transition ease-in-out hover:-translate-y-1 hover:scale-110" @click=" $dispatch('getsubtype',{ name : product.title }) ; secondStep = false; thirdStep = true;">
-                    <img src="" alt="">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                            <img x-bind:src="product.url" class="h-10 w-10" alt="">
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-bold text-lg text-gray-500 dark:text-gray-400" x-text="product.title"></p>
-                  </div>
-    
-            </template> 
+              @foreach (getProductSubtypes() as $subtype)
+                <x-products.subtype.card :subtype=$subtype />
+              @endforeach
         
         </div>
-        
-      </div>
 
 
-      <div x-show="thirdStep" x-transition x-data>
+      <div x-show="thirdStep" @selectedsubtype.window="thirdStep=true; secondStep=false; firstStep=false">
 
-        <div class="container m-auto lg:w-1/2 p-2" @getsubtitle.window="console.log($event.detail.name)">
-            <form action="{{ route('product.create')  }}" method="POST" enctype="multipart/form-data">
+        <div class="container m-auto lg:w-1/2 p-2">
+            <form action="{{ route('product.create') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-12">
                   <div class="border-b border-gray-900/10 pb-12">
@@ -148,8 +134,12 @@
                     </div>
                   </div>
 
-
-                 @livewire('product-form')
+                  <div x-data="{ typeform : $persist('') }">
+                    <div @selectedsubtype.window="typeform = $event.detail.name">
+                      <x-products.form.product-form ::typeform="typeform"/>
+                    </div>
+                  </div>
+                
               
                 </div>
               

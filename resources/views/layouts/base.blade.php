@@ -17,6 +17,8 @@
 
     @include('partials.bell-modal')
 
+    @include('partials.search-modal')
+    
     @yield('scripts')
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
