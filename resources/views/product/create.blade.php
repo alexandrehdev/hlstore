@@ -11,7 +11,7 @@
 @section('content')
     @include('partials.header')
 
-    <div x-data="{ type:'', subtype:'', firstStep: $persist(true), secondStep: $persist(false), thirdStep : $persist(false)}">
+    <div x-data="{ subtype:'', firstStep: $persist(true), secondStep: $persist(false), thirdStep : $persist(false)}">
       <div class="py-8 overflow-hidden">
         <div x-show="secondStep || thirdStep" class="">
          <button @click="thirdStep = false; secondStep = false; firstStep = true" class="mb-10  text-gray-800 font-bold py-2  rounded inline-flex items-center">
@@ -23,57 +23,7 @@
         </div>
 
 
-        <div class="container m-auto px-6 space-y-8 text-gray-500 md:px-12" x-show="firstStep">
-            <div>
-                <span class="text-gray-600 text-lg font-semibold">Escolha o Tipo</span>
-                <h2 class="mt-4 text-2xl text-gray-900 font-bold md:text-4xl">Qual o tipo de produto que deseja vender ?<br class="lg:block" hidden></h2>
-            </div>
-            <div class="mt-16 grid border divide-x divide-y rounded-xl overflow-hidden sm:grid-cols-2 lg:divide-y-0 lg:grid-cols-3 xl:grid-cols-4">
-                <div class="relative group m-2 bg-white cursor-pointer transition hover:z-[1] hover:shadow-2xl">
-                    <div class="relative p-8 space-y-8" @click="firstStep = false; secondStep = true">
-                        <img src="https://www.svgrepo.com/show/530225/cell-phone.svg" class="w-14" width="512" height="512" alt="burger illustration">
-                        
-                        <div class="space-y-2">
-                            <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Produtos</h5>
-                            <p class="text-sm text-gray-600">Ex: Computadores, Periféricos, Roupas...</p>
-                        </div>
-                        <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                            <span class="text-sm"></span>
-                            <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="relative group m-2 bg-white cursor-pointer transition hover:z-[1] hover:shadow-2xl">
-                    <div class="relative p-8 space-y-8">
-                        <img src="https://www.svgrepo.com/show/530235/transportation.svg" class="w-14" width="512" height="512" alt="burger illustration">
-                        
-                        <div class="space-y-2">
-                            <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Veiculos</h5>
-                            <p class="text-sm text-gray-600">Ex: Carros, Motos, Peças no Geral...</p>
-                        </div>
-                        <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                            <span class="text-sm"></span>
-                            <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="relative group  m-2 bg-white cursor-pointer transition hover:z-[1] hover:shadow-2xl">
-                    <div class="relative p-8 space-y-8">
-                        <img src="https://tailus.io/sources/blocks/stacked/preview/images/avatars/package-delivery.png" class="w-10" width="512" height="512" alt="burger illustration">
-                        
-                        <div class="space-y-2">
-                            <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Digital</h5>
-                            <p class="text-sm text-gray-600">Cursos, Sistemas, Serviços.</p>
-                        </div>
-                        <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                            <span class="text-sm"></span>
-                            <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-      </div>
-      
+        
      
         <div x-show="secondStep" class="grid lg:grid-cols-3  grid-cols-1 place-items-center items-center gap-2 content-center" x-data>
             
@@ -87,8 +37,11 @@
       <div x-show="thirdStep" @selectedsubtype.window="thirdStep=true; secondStep=false; firstStep=false">
 
         <div class="container m-auto lg:w-1/2 p-2">
-            <form action="{{ route('product.create') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                <input type="hidden" x-model="subtype" name="subtype">
+
                 <div class="space-y-12">
                   <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Detalhes do Produto</h2>
@@ -143,9 +96,9 @@
               
                 </div>
               
-                <div class="mt-6 flex items-center justify-end gap-x-6">
-                  <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
-                  <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Criar</button>
+                <div class="mt-6 flex items-center justify-start gap-x-6">
+                  <button type="button" class="text-base font-semibold leading-8 text-gray-900">Cancelar</button>
+                  <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Criar</button>
                 </div>
               </form>
         </div>

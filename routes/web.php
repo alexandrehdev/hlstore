@@ -6,7 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\TypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +32,8 @@ Route::get('/login', [LoginController::class,'index'])->name('login');
 Route::post("/auth",[LoginController::class, 'login'])->name('auth');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-
+Route::get('/selecionar_tipo', [TypeController::class, 'index'])->name('type');
+Route::post('/tipo', [TypeController::class, 'handleType'])->name('handleType');
 
 Route::group(['prefix' => 'produtos', 'as' => 'product.','middleware' => 'auth'],function() {
     Route::get('/', [ProductController::class,'index'])->name('index');

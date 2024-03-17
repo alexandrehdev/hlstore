@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProductRequest;
+use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
@@ -24,26 +24,26 @@ class ProductController extends Controller
         return view('product.create');
     }
 
-    public function store(StoreProductRequest $request, StoreProduct $store_product) :RedirectResponse
+    public function store(Request $request, StoreProduct $store_product) :RedirectResponse
     {
-        $data = $request->validated();
-    
-        if($request->hasFile('file')){
-            $image_path = Storage::putFile('public/products', $request->file('file'));
-        }
+        dd($request->input('subtype'));
         
-        $store_product_input = new StoreProductInput(
-            $data["name"],
-            $data["price"],
-            $data["category"],
-            $image_path,
-            $data["description"],
-            $data["user_id"]
-        );
+        // if($request->hasFile('file')){
+        //     $image_path = Storage::putFile('public/products', $request->file('file'));
+        // }
+        
+        // $store_product_input = new StoreProductInput(
+        //     $data["name"],
+        //     $data["price"],
+        //     $data["category"],
+        //     $image_path,
+        //     $data["description"],
+        //     $data["user_id"]
+        // );
 
-        $store_product->execute($store_product_input);
+        // $store_product->execute($store_product_input);
         
-        return redirect()->route('home')->with("success","Produto publicado com sucesso");
+        // return redirect()->route('home')->with("success","Produto publicado com sucesso");
     }
 
 
