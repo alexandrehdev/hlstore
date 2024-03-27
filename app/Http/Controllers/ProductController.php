@@ -13,7 +13,7 @@ use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
-    
+
     public function index()
     {
         return view('product.index');
@@ -27,11 +27,11 @@ class ProductController extends Controller
     public function store(Request $request, StoreProduct $store_product) :RedirectResponse
     {
         dd($request->input('subtype'));
-        
+
         // if($request->hasFile('file')){
         //     $image_path = Storage::putFile('public/products', $request->file('file'));
         // }
-        
+
         // $store_product_input = new StoreProductInput(
         //     $data["name"],
         //     $data["price"],
@@ -42,7 +42,7 @@ class ProductController extends Controller
         // );
 
         // $store_product->execute($store_product_input);
-        
+
         // return redirect()->route('home')->with("success","Produto publicado com sucesso");
     }
 
@@ -51,7 +51,6 @@ class ProductController extends Controller
     {
         $product = Product::with('user')
         ->where("id","=",$product->id)
-        ->get()
         ->first();
 
         return view("product.show", ["product" => $product]);

@@ -6,7 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\TypeController;
+use App\Livewire\ProductForm;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +32,15 @@ Route::get('/login', [LoginController::class,'index'])->name('login');
 Route::post("/auth",[LoginController::class, 'login'])->name('auth');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::get('/selecionar_tipo', [TypeController::class, 'index'])->name('type');
-Route::post('/tipo', [TypeController::class, 'handleType'])->name('handleType');
+// Route::get('/selecao', [TypeController::class, 'index'])->name('type');
+// Route::post('/selecao', [TypeController::class, 'handleType'])->name('handleType');
+
+// Route::get('/selecao/lista',[SubtypeController::class,'index'])->name('subtype');
+// Route::post("/selecao/lista",[SubtypeController::class,'handleSubtype'])
+// ->name('handleSubtype');
+
+Route::post('/check',[ProductForm::class,'check'])->middleware('auth')->name('checkForm');
+
 
 Route::group(['prefix' => 'produtos', 'as' => 'product.','middleware' => 'auth'],function() {
     Route::get('/', [ProductController::class,'index'])->name('index');

@@ -13,12 +13,16 @@ class TypeController extends Controller
 
     public function handleType(Request $request)
     {
-        $type = $request->input('type');
+        // abort_if(!in_array("produtos",["produtos","veiculos","digital"]),404);
+        // dd($request->input('tipo'));
+        $type = $request->input('tipo');
+
+        $request->session()->put(['type' => $type]);
 
         $route = match($type){
-            'products' => '',
-            'vehicle' => '',
-            'digital' => ''
+            'produtos' => route('subtype',['tipo' => $type]),
+            'veiculos' => route('subtype',['tipo' => $type]),
+            'digital' => route('subtype',['tipo' => $type])
         };
 
         return redirect()->to($route);

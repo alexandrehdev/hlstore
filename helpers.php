@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  */
 if (! function_exists('getLoggedUser')) {
 
@@ -17,56 +17,51 @@ if (! function_exists('getLoggedUser')) {
 }
 
 
-if( ! function_exists('getProductSubtypes')){
+if( ! function_exists('getSubtypes')){
 
-    
-    function getProductSubtypes()
-    {  
-        
+
+    function getSubtypes()
+    {
+
         $data = [
             [
-                "title" => "Autos e peças",
-                "name" => "auto",
-                "url" => "https://www.svgrepo.com/show/513282/car.svg"
-            ],
-            [
                 "title" => "Imóveis",
-                "name" => "property",
+                "name" => "imoveis",
                 "url" => "https://www.svgrepo.com/show/513309/house.svg"
             ],
             [
                 "title" => "Casa, Decoração e Utensílios",
-                "name" => "decoration",
+                "name" => "decoracao",
                 "url" => "https://www.svgrepo.com/show/475276/table.svg"
             ],
             [
                 "title" => "Móveis",
-                "name" => "furniture",
+                "name" => "moveis",
                 "url" => "https://www.svgrepo.com/show/206574/wardrobe-closet.svg"
             ],
             [
                 "title" => "Eletro",
-                "name" => "electronics",
+                "name" => "eletro",
                 "url" => "https://www.svgrepo.com/show/410652/wash.svg"
             ],
             [
                 "title" => "Materiais de Construção",
-                "name" => "construction",
+                "name" => "construcao",
                 "url" => "https://www.svgrepo.com/show/485388/hammer.svg"
             ],
             [
                 "title" => "Celulares e Telefonia",
-                "name" => "phone",
+                "name" => "celulares",
                 "url" => "https://www.svgrepo.com/show/508311/mobile.svg"
             ],
             [
                 "title" => "Informática",
-                "name" => "computing",
+                "name" => "informatica",
                 "url" => "https://www.svgrepo.com/show/288488/motherboard.svg"
             ],
             [
                 "title" => "Games",
-                "name" => "games",
+                "name" => "jogos",
                 "url" => "https://www.svgrepo.com/show/475521/arcade.svg"
             ],
             [
@@ -86,22 +81,22 @@ if( ! function_exists('getProductSubtypes')){
             ],
             [
                 "title" => "Moda e beleza",
-                "name" => "fashion",
+                "name" => "moda",
                 "url" => "https://www.svgrepo.com/show/234666/clothes-shirt.svg"
             ],
             [
                 "title" => "Comércio e escritório",
-                "name" => "commerce",
+                "name" => "comercio",
                 "url" => "https://www.svgrepo.com/show/530656/office-chair.svg"
             ],
             [
                 "title" => "Música e hobbies",
-                "name" => "music",
+                "name" => "musica",
                 "url" => "https://www.svgrepo.com/show/499695/electric-guitar.svg"
             ],
             [
                 "title" => "Esportes e lazer",
-                "name" => "sports",
+                "name" => "esportes",
                 "url" => "https://www.svgrepo.com/show/421901/ball-basket-basketball.svg"
             ],
             [
@@ -111,7 +106,7 @@ if( ! function_exists('getProductSubtypes')){
             ],
             [
                 "title" => "Agro e indústria",
-                "name" => "agri",
+                "name" => "agro",
                 "url" => "https://www.svgrepo.com/show/407638/tractor.svg"
             ]
         ];
