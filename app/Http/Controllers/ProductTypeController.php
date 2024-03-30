@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Storage;
 use App\UseCase\Product\Input as StoreProductInput;
 use App\UseCase\Product\UseCase as StoreProduct;
 use Illuminate\Contracts\View\View;
+use App\UseCase\ProductType\Input as ProductTypeInput;
+use App\UseCase\ProductType\UseCase as FilterType;
+use App\Enums\ProductSubtype;
 
-class ProductController extends Controller
+class ProductTypeController extends Controller
 {
 
     public function index()
@@ -22,6 +25,28 @@ class ProductController extends Controller
     public function create()
     {
         return view('product.create');
+    }
+
+    public function details(Request $request, FilterType $filterType)
+    {
+        $type = $request->input('type');
+        $subtype = ProductSubtype::from($request->input('subtype'));
+        
+        $input = new ProductTypeInput(
+            $type,
+            $subtype
+        );
+
+        $response = match($type){
+            'produto' => (new FilterType())->validateProduct($input),
+            'veiculo' => (new FilterType())->validateVehicle($input),
+            'digital' => (new FilterType())->validateDigital($input),
+
+             default => back()->with('message',"Tipo inexistente, por favor tente novamente.")
+        };
+        
+
+       return redirect()->to($response);
     }
 
     public function store(Request $request, StoreProduct $store_product) :RedirectResponse

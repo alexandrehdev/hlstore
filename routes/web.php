@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ProductController;
-use App\Livewire\ProductForm;
+use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\Subtype\FashionController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,21 +32,20 @@ Route::get('/login', [LoginController::class,'index'])->name('login');
 Route::post("/auth",[LoginController::class, 'login'])->name('auth');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-// Route::get('/selecao', [TypeController::class, 'index'])->name('type');
-// Route::post('/selecao', [TypeController::class, 'handleType'])->name('handleType');
-
-// Route::get('/selecao/lista',[SubtypeController::class,'index'])->name('subtype');
-// Route::post("/selecao/lista",[SubtypeController::class,'handleSubtype'])
-// ->name('handleSubtype');
-
-Route::post('/check',[ProductForm::class,'check'])->middleware('auth')->name('checkForm');
-
 
 Route::group(['prefix' => 'produtos', 'as' => 'product.','middleware' => 'auth'],function() {
-    Route::get('/', [ProductController::class,'index'])->name('index');
-    Route::get('/vender', [ProductController::class, 'create'])->name('create');
-    Route::post('/publicar', [ProductController::class,'store'])->name('store');
+    Route::get('/', [ProductTypeController::class,'index'])->name('index');
+    Route::get('/tipos', [ProductTypeController::class, 'create'])->name('create');
+    Route::post('/detalhes', [ProductTypeController::class,'details'])->name('details');
+    // Route::post('/publicar', [ProductTypeController::class,'store'])->name('store');
+
+    Route::group(['prefix'=> '/subtipo/{subtype}', 'as'=> 'subtype.',],function(){
+        Route::get('/', [FashionController::class,'create'])->name('fashion');
+    });
 });
+
+Route::get('/produto/mostrar', [ProductTypeController::class,'show'])->name('show');
+
 
 Route::get('/configuracoes',function(){
     return view('settings.index');
@@ -61,4 +60,4 @@ Route::get('/presentation', function(){
     return view('presentation.index');
 })->name('presentation');
 
-Route::get('/produto/mostrar', [ProductController::class,'show'])->name('show');
+
