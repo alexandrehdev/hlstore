@@ -11,7 +11,7 @@ class UseCase
         $subtype = $input->subtype;
 
         return match($subtype){
-            ProductSubtype::MODA => route('product.subtype.fashion',['subtype' => $subtype]),
+            ProductSubtype::MODA => route('type_product.subtype.fashion.create',['subtype' => $subtype]),
         };
     }
     

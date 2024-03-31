@@ -1,7 +1,7 @@
 import Quill from "quill";
-// const quill = new Quill('#editor',{
-//     modules: {
-//         toolbar: true,
-//       },
-//       theme: 'snow'
-//   });
+const quill = new Quill('#editor',{
+    modules: {
+        toolbar: true,
+      },
+      theme: 'snow'
+  });

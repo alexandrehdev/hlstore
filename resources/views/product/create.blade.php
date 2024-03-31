@@ -11,7 +11,7 @@
 @section('content')
     @include('partials.header')
 
-    <form action="{{ route('product.details') }}" id="typeForm" method="POST">
+    <form action="{{ route('type_product.details') }}" id="typeForm" method="POST">
         @csrf
         <div x-data="{ data: '', type : true, product: false, vehicle: false, digital : false }">
             <div class="py-8 overflow-hidden">

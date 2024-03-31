@@ -49,9 +49,9 @@ class ProductTypeController extends Controller
        return redirect()->to($response);
     }
 
-    public function store(Request $request, StoreProduct $store_product) :RedirectResponse
+    public function store() 
     {
-        dd($request->input('subtype'));
+        
 
         // if($request->hasFile('file')){
         //     $image_path = Storage::putFile('public/products', $request->file('file'));

@@ -33,14 +33,20 @@ Route::post("/auth",[LoginController::class, 'login'])->name('auth');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
-Route::group(['prefix' => 'produtos', 'as' => 'product.','middleware' => 'auth'],function() {
+Route::group(['prefix' => 'tipo_produto', 'as' => 'type_product.','middleware' => 'auth'],function() {
     Route::get('/', [ProductTypeController::class,'index'])->name('index');
     Route::get('/tipos', [ProductTypeController::class, 'create'])->name('create');
     Route::post('/detalhes', [ProductTypeController::class,'details'])->name('details');
     // Route::post('/publicar', [ProductTypeController::class,'store'])->name('store');
 
-    Route::group(['prefix'=> '/subtipo/{subtype}', 'as'=> 'subtype.',],function(){
-        Route::get('/', [FashionController::class,'create'])->name('fashion');
+    Route::group(['prefix'=> '/subtipo', 'as'=> 'subtype.'],function(){
+
+        Route::group(['prefix' => "/", 'as' => 'fashion.'],function(){
+            Route::get('/{subtype}', [FashionController::class,'create'])->name('create');
+            Route::post('/salvar',[FashionController::class,'store'])->name('store');
+        });
+
+        
     });
 });
 
