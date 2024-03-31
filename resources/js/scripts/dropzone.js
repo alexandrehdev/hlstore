@@ -9,6 +9,7 @@ let dropzone = document.querySelector("#dropzone");
 var options = {
     url: productUrlDropzone, // URL onde os arquivos serão enviados
     acceptedFiles: ".jpg,.jpeg,.png", // Tipos de arquivos aceitos
+    autoProcessQueue: false,
     headers: {
         "X-CSRF-TOKEN": csrf_token
     },
@@ -23,7 +24,7 @@ window.onload = function () {
         if (myDropzone.getQueuedFiles().length > 0) {
             myDropzone.processQueue(); // Processar a fila se houver arquivos na fila
         } else {
-            document.getElementById("myForm").submit(); // Enviar o formulário normalmente se não houver arquivos na fila
+            document.querySelector('#productForm').submit(); // Enviar o formulário normalmente se não houver arquivos na fila
         }
     });
 };

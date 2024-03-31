@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container m-auto lg:w-1/2 p-2">
-        <form action="{{ route('type_product.subtype.fashion.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('type_product.subtype.fashion.store') }}" method="POST" id="productForm" enctype="multipart/form-data">
             @csrf
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">
