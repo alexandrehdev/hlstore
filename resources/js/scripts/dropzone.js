@@ -17,15 +17,16 @@ var options = {
 window.onload = function () {
     var myDropzone = new Dropzone("#myDropzone", options);
 
-    document.querySelector("#createProduct").addEventListener('click', function () {
+    document.querySelector("#createProduct").addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar envio do formulário
 
         if (myDropzone.getQueuedFiles().length > 0) {
-            myDropzone.processQueue();
+            myDropzone.processQueue(); // Processar a fila se houver arquivos na fila
+        } else {
+            document.getElementById("myForm").submit(); // Enviar o formulário normalmente se não houver arquivos na fila
         }
-
-    })
+    });
 };
-// 
 
 
 

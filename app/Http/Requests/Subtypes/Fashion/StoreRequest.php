@@ -22,15 +22,15 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name",
-            "file" => ["image"],
-            "description",
-            "type-clothes",
-            "brand",
-            "color",
-            "condition",
-            "gender",
-            "size"
+            "name" => ['required'],
+            "file" => ["required", "image"],
+            "description" => ['required'],
+            "type-clothes" => ['required'],
+            "brand" => ['required'],
+            "color" => ['required'],
+            "condition" => ['required'],
+            "gender" => ['required'],
+            "size" => ['required']
         ];
     }
 }
