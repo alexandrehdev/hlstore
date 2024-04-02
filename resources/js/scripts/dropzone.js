@@ -23,6 +23,7 @@ window.onload = function () {
 
         if (myDropzone.getQueuedFiles().length > 0) {
             myDropzone.processQueue(); // Processar a fila se houver arquivos na fila
+             document.querySelector('#productForm').submit();
         } else {
             document.querySelector('#productForm').submit(); // Enviar o formulário normalmente se não houver arquivos na fila
         }

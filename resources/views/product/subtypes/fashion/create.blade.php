@@ -10,7 +10,16 @@
 @endsection
 
 @section('content')
-    <div class="container m-auto lg:w-1/2 p-2">
+<div>
+    <a href="{{ route('type_product.create') }}" class="inline-flex items-center py-2 my-10 font-bold text-gray-800 rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="p-2 w-9 h-9">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+        </svg>
+        <span>Voltar</span>
+    </a>
+</div>
+    <div class="container m-auto lg:w-1/2 p-2" x-data>
         <form action="{{ route('type_product.subtype.fashion.store') }}" method="POST" id="productForm" enctype="multipart/form-data">
             @csrf
             <div class="space-y-12">
@@ -31,18 +40,26 @@
 
                     <div class="col-span-full mb-10">
                         <label for="about" class="block mb-4 text-sm font-medium leading-6 text-gray-900">Decrição (obrigatório)</label>
-                        <div class="mt-2" id="editor">
-                            <textarea placeholder="Descrição" id="about" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                        <div class="mt-2">
+                            <div class="max-w-2xl">
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"></label>
+                                <textarea id="message" rows="4" name="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+                            </div>
+                            
                         </div>
-                    <p class="mt-3 text-sm leading-6 text-gray-600">Faça uma descrição do seu produto.</p>
+                        <p class="mt-3 text-sm leading-6 text-gray-600">
+                            Faça uma descrição do seu produto.
+                        </p>
                     </div>
 
                     
-                    <div class="col-span-full mt-24">
+                    <div class="col-span-full mt-9">
                     <div id="myDropzone" class="dropzone dz-clickable" style="border: 2px dashed #ccc; background: white; padding: 20px; margin: 20px;">
 
                         <div class="dz-default dz-message">
-                        <span>Arraste os arquivos aqui ou clique para fazer upload</span>
+                            <span>
+                                Arraste e solte arquivos aqui ou clique para fazer upload
+                            </span>
                         </div>
 
                         <!-- Área de pré-visualização de arquivos -->

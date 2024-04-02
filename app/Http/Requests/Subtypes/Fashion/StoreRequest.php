@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             "name" => ['required'],
-            "file" => ["required", "image"],
+            "file" => [],
             "description" => ['required'],
             "type-clothes" => ['required'],
             "brand" => ['required'],
