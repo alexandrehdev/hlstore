@@ -2,7 +2,7 @@
 @extends('layouts.base')
 @section('title', 'HLStore | Roupas')
 
-@vite(['resources/js/scripts/dropzone.js', 'resources/js/scripts/quill.js'])
+@vite(['resources/js/scripts/dropzone.js'])
 
 @section('meta-data')
     <meta property="targeUrl" content="{{ route('type_product.subtype.fashion.store') }}">
@@ -55,7 +55,7 @@
                     
                     <div class="col-span-full mt-9">
                     <div id="myDropzone" class="dropzone dz-clickable" style="border: 2px dashed #ccc; background: white; padding: 20px; margin: 20px;">
-
+                        <form action="">
                         <div class="dz-default dz-message">
                             <span>
                                 Arraste e solte arquivos aqui ou clique para fazer upload
@@ -81,8 +81,7 @@
 
                         </div>
 
-                        <input type="file" hidden name="file" multiple />
-
+                        </form>
                     </div>
                 </div>
                 </div>

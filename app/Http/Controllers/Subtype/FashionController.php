@@ -14,6 +14,6 @@ class FashionController extends Controller
 
     public function store(StoreRequest $request)
     {
-        dd($request->except('_token'));
+        $request->file('file');
     }
 }
