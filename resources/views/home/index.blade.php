@@ -1,4 +1,5 @@
 @extends('layouts.base')
+@section('title','Principal')
 @include('partials.header')
 
 @vite(['resources/js/scripts/swiper.js','resources/css/styles/swiper.css'])

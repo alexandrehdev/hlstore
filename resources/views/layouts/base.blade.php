@@ -8,6 +8,7 @@
     @vite(['resources/css/app.css','resources/js/main.js'])
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.1.6/quill.snow.css" rel="stylesheet">
+    <meta property="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     @livewireStyles
 </head>

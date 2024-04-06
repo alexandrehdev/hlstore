@@ -3,12 +3,12 @@
 /**
  *
  */
-if (! function_exists('getLoggedUser')) {
+if (! function_exists('loggedUser')) {
 
     /**
      * Return the current logged user
      *
-     * @return void
+     * 
      */
     function loggedUser() {
         return Illuminate\Support\Facades\Auth::user();

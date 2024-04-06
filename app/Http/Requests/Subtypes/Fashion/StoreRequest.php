@@ -22,15 +22,31 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => [],
-            "file" => ['required','mimes:jpg,jpeg'],
-            "description" => [],
-            "type-clothes" => [],
-            "brand" => [],
-            "color" => [],
-            "condition" => [],
-            "gender" => [],
-            "size" => []
+            "name" => ['required'],
+            "description" => ['required'],
+            "type" => ['required'],
+            "subtype" => ['required'],
+            "brand" => ['required'],
+            "color" => ['required'],
+            "condition" => ['required'],
+            "gender" => ['required'],
+            "price" => ["required"],
+            "size" => ['required']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => "O Nome do produto é OBRIGATÓRIO",
+            'description.required' => "A DESCRIÇÃO do produto é OBRIGATÓRIO",
+            'subtype.required' => "O campo SUBTIPO DE ROUPA é OBRIGATÓRIO",
+            'brand.required' => "O campo MARCA é OBRIGATÓRIO",
+            'color.required' => "O campo COR é OBRIGATÓRIO",
+            'condition.required' => "O campo de NOVO/USADO é OBRIGATÓRIO",
+            'gender.required' => "O campo GÊNERO é OBRIGATÓRIO",
+            'price.required' => "O campo de PREÇO é OBRIGATÍO",
+            'size.required' => "O campo de TAMANHO é OBRIGATORIO"
         ];
     }
 }
