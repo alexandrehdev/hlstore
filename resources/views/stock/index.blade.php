@@ -65,10 +65,15 @@
                                         <input type="checkbox" class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700">
 
                                         <div class="flex items-center gap-x-2">
-                                            <img class="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="">
+                                            {{-- <img class="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt=""> --}}
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 rounded-full">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                              </svg>
+                                              
+                                              
                                             <div>
                                                 <h2 class="font-medium text-gray-800 dark:text-white ">{{ $product->name }}</h2>
-                                                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">@authurmelo</p>
+                                                {{-- <p class="text-sm font-normal text-gray-600 dark:text-gray-400">@authurmelo</p> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +82,7 @@
                                     <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                         <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                                        <h2 class="text-sm font-normal text-emerald-500">Active</h2>
+                                        <h2 class="text-sm font-normal text-emerald-500">{{ $product->status }}</h2>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Design Director</td>

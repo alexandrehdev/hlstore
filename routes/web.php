@@ -49,6 +49,7 @@ Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'a
     });
 });
 
+// COLOCAR NO CONTROLLER E FAZER UMA QUERY
 Route::get('/produto/estoque',function(){
     return view('stock.index');
 })->name('stock');
