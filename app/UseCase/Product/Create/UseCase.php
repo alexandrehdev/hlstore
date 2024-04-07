@@ -22,7 +22,7 @@ class UseCase
             $product->{$field} = $value;
         }
 
-        $product->visibility = ProductStatus::PRIVATE;
+        $product->status = ProductStatus::PRIVATE;
         $product->user_id = loggedUser()->id;
 
         $product->save();

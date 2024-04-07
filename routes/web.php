@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\Subtype\FashionController; 
+use App\Http\Controllers\StockController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,10 +50,8 @@ Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'a
     });
 });
 
-// COLOCAR NO CONTROLLER E FAZER UMA QUERY
-Route::get('/produto/estoque',function(){
-    return view('stock.index');
-})->name('stock');
+
+Route::get('/produto/estoque',[StockController::class,'index'])->name('stock');
 
 Route::get('/produto/compra', [ProductTypeController::class,'show'])->name('show');
 

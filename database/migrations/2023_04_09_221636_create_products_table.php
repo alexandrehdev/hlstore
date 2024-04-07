@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("subtype");
             $table->string("price");
             $table->string("brand");
-            $table->enum("visibility",["public","private"]);
+            $table->enum("status",["public","private"]);
             $table->string("color");
             $table->string("condition");
             $table->string("gender");
