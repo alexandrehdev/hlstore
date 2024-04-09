@@ -18,7 +18,7 @@
   </div>
 </div> -->
 
-    <div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)">
+    <div class="bg-cover bg-center h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)">
       <div class="md:w-1/2">
       <p class="font-bold text-sm uppercase">Services</p>
       <p class="text-3xl font-bold">Multimedia products</p>
@@ -30,9 +30,9 @@
 
     <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 place-items-center">
 
-        @foreach (range(1,10) as $index => $num)
+        @foreach ($products as $product)
 
-          <x-product-card index=$index/>
+          <x-product-card :product=$product/>
           
         @endforeach
         
