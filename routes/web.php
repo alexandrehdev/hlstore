@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Subtype\FashionController; 
 use App\Http\Controllers\StockController; 
 /*
@@ -35,9 +35,10 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'auth'],function() {
-    Route::get('/', [ProductTypeController::class,'index'])->name('index');
-    Route::get('/vender', [ProductTypeController::class, 'create'])->name('create');
-    Route::post('/detalhes', [ProductTypeController::class,'details'])->name('details');
+    Route::get('/', [ProductController::class,'index'])->name('index');
+    Route::post('/publicar/{product}',[ProductController::class,'publish'])->name('publish');
+    Route::get('/vender', [ProductController::class, 'create'])->name('create');
+    Route::post('/detalhes', [ProductController::class,'details'])->name('details');
 
     Route::group(['prefix'=> '/vender', 'as'=> 'subtype.'],function(){
 
@@ -51,9 +52,9 @@ Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'a
 });
 
 
-Route::get('/produto/estoque',[StockController::class,'index'])->name('stock');
+Route::get('/produto/estoque',[StockController::class,'index'])->middleware('auth')->name('stock');
 
-Route::get('/produto/compra', [ProductTypeController::class,'show'])->name('show');
+Route::get('/produto/compra', [ProductController::class,'show'])->name('show');
 
 
 Route::get('/configuracoes',function(){

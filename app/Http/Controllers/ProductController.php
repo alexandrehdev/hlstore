@@ -5,21 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
-use App\UseCase\Product\Input as StoreProductInput;
-use App\UseCase\Product\UseCase as StoreProduct;
 use Illuminate\Contracts\View\View;
 use App\UseCase\ProductType\Input as ProductTypeInput;
 use App\UseCase\ProductType\UseCase as FilterType;
+use App\UseCase\Product\Publish\Input as ProductPublishInput;
+use App\UseCase\Product\Publish\UseCase as PublishProduct;
 use App\Enums\ProductSubtype;
+use App\Enums\ProductStatus;
 
-class ProductTypeController extends Controller
+class ProductController extends Controller
 {
 
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where("status", ProductStatus::PUBLIC)
+        ->orderBy("id","desc")
+        ->get();
 
         return view('product.index',['products' => $products]);
     }
@@ -27,6 +28,17 @@ class ProductTypeController extends Controller
     public function create()
     {
         return view('product.create');
+    }
+
+    public function publish(Product $product, PublishProduct $publishProduct)
+    {
+        $productPublishInput = new ProductPublishInput(
+            $product
+        );
+
+        $publishProduct->handle($productPublishInput);
+
+        return redirect()->back();
     }
 
     public function details(Request $request, FilterType $filterType)
