@@ -25,7 +25,7 @@ class FashionController extends Controller
         );
         
         return redirect()
-            ->route("type_product.index")
+            ->route("stock")
             ->with("success","Produto Criado");
         
     }

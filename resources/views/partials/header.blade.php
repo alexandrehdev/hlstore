@@ -125,9 +125,9 @@
 
                 Estoque 
                 @if(loggedUser()->products->where("status",App\Enums\ProductStatus::PRIVATE)->count() > 0)
-                  <span class="bg-teal-500 rounded-full p-1 w-5 h-5 text-white ml-2" style="font-size: 10px;"> 
+                  <p class="flex h-2 w-2 mt-1 ml-1 items-center justify-center rounded-full bg-cyan-500 p-2 text-xs text-white">
                     {{ loggedUser()->products->where("status",App\Enums\ProductStatus::PRIVATE)->count() }}
-                  </span>
+                  </p>
                 @endif
                
               </div>
