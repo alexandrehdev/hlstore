@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
+use App\UseCase\Login\Input as UserData;
+use App\UseCase\Login\UseCase as AuthUser;
 
 class LoginController extends Controller
 {
@@ -14,14 +14,15 @@ class LoginController extends Controller
         return view("auth.login");
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request, AuthUser $auth)
     {
-        $data = $request->validated();
         
-        if(Auth::attempt(['email' => $data["email"], "password" => $data["password"]])){
-            return redirect()->route("home");
-        }else{
-            return back()->with("fail","Conta inexistente, verifique novamente.");
-        }
+        $user_data = new UserData(
+            $request->validated()["email"],
+            $request->validated()["password"],
+        );
+
+        return $auth->login($user_data) ? redirect()->route("home") : back()
+        ->with("fail","Conta inexistente, verifique novamente.");
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UseCase{
 
-    public function execute(Input $input) :void
+    public function execute(Input $input) 
     {
         $user = new User();
         $user->name = $input->username;

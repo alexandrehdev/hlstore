@@ -30,7 +30,7 @@
                         <div class="mt-2">
                             <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                 <!-- <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span> -->
-                                <input type="text" name="name" id="name" autocomplete="off" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Produto">
+                                <input type="text" name="name" id="name" value="{{ old('name') }}" autocomplete="off" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Produto">
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="mt-2">
                             <div class="max-w-2xl">
                                 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"></label>
-                                <textarea id="message" rows="4" name="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descrição do Produto"></textarea>
+                                <textarea id="message" rows="4" name="description" value="{{ old('description') }}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descrição do Produto"></textarea>
                             </div>
 
                         </div>
@@ -72,7 +72,7 @@
                         <div class="sm:col-span-3">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Subtipo</label>
                             <div class="mt-2">
-                                <select id="brand" name="subtype" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <select id="brand" name="subtype" value="{{ old('subtype') }}" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     <option value="nothing">Selecione</option>
                                     <option value="calça">Calças</option>
                                     <option value="bermuda">Bermuda</option>
@@ -89,7 +89,7 @@
                         <div class="sm:col-span-3">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Marca</label>
                             <div class="mt-2">
-                                <select id="model" name="brand" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <select id="model" name="brand" value="{{ old('brand') }}" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     <option value="adidas">Adidas</option>
                                     <option value="nike">Nike</option>
                                     <option value="puma">Puma</option>
@@ -100,6 +100,7 @@
                                     <option value="calvin-klein">Calvin Klein</option>
                                     <option value="tommy-hilfiger">Tommy Hilfiger</option>
                                     <option value="ralph-lauren">Ralph Lauren</option>
+                                    <option value="timberland">Timberland</option>
                                 </select>
                             </div>
                         </div>
@@ -107,7 +108,7 @@
                         <div class="sm:col-span-3">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Cor</label>
                             <div class="mt-2">
-                                <select id="model" name="color" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <select id="model" name="color" value="{{ old('color') }}" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     <option value="preto">Preto</option>
                                     <option value="branco">Branco</option>
                                     <option value="cinza">Cinza</option>
@@ -128,7 +129,7 @@
                         <div class="sm:col-span-4">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Novo/Usado</label>
                             <div class="mt-2">
-                                <select id="model" name="condition" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <select id="model" name="condition" value="{{ old('condition') }}" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     <option value="new">Novo</option>
                                     <option value="used">Usado</option>
                                 </select>
@@ -138,7 +139,7 @@
                         <div class="sm:col-span-3">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Gênero</label>
                             <div class="mt-2">
-                                <select id="country" name="gender" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <select id="country" name="gender" value="{{ old('gender') }}" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     <option>Masculino</option>
                                     <option>Feminino</option>
                                     <option>Unissex</option>
@@ -149,7 +150,7 @@
                         <div class="col-span-full">
                             <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Tamanho</label>
                             <div class="mt-2">
-                                <select id="country" name="size" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <select id="country" name="size" value="{{ old('size') }}" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     <option value="">Selecione</option>
                                     <option value="PP">PP</option>
                                     <option value="P">P</option>
@@ -176,7 +177,7 @@
                         <div class="col-span-full">
                             <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Preço</label>
                             <div class="mt-2">
-                                <input type="text" name="price" id="price" autocomplete="off" placeholder="R$ 0,00" class="block md:w-1/3 sm:w-full money rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <input type="text" name="price" value="{{ old('price') }}" id="price" autocomplete="off" placeholder="R$ 0,00" class="block md:w-1/3 sm:w-full money rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
                     </div>

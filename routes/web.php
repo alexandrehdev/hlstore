@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Subtype\FashionController; 
 use App\Http\Controllers\StockController; 
+use App\Livewire\DropzoneBanner;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +52,9 @@ Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'a
     });
 });
 
+Route::group(['prefix' => "/banner", 'as' => 'banner.','middleware' => 'auth'], function(){
+    Route::post('/',[DropzoneBanner::class,'upload'])->name('upload');
+});
 
 Route::get('/produto/estoque',[StockController::class,'index'])->middleware('auth')->name('stock');
 
