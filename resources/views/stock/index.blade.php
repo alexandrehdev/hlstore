@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('title', 'HLStore | Estoque')
 @section('meta-data')
-    <meta property="targeUrl" content="tchurusbango">
+    <meta property="productsCount" content=" @json($products->pluck('id')->toArray()) ">
 @endsection
 @include('partials.header')
 @section('content')
@@ -261,7 +261,7 @@
                                             </button>
                                         </div>
                                         <div>
-                                            @livewire('dropzone-banner')
+                                            @livewire('dropzone-poster',["product" => $product])
                                         </div>                                        
                                     </div>
                                 </div>

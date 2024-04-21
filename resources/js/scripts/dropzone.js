@@ -3,6 +3,8 @@ import "dropzone/dist/dropzone.css"
 
 let productUrlDropzone = document.querySelector("meta[property='targetUrl']").content;
 let csrf_token = document.querySelector("meta[property='csrf-token']").content;
+let productsIds = document.querySelector("meta[property='productsCount']").content;
+var sanitizedProductsIds = productsIds.replace('[',"").split(',').map((number) => { return parseInt(number) });
 
 
 var options = {
@@ -23,8 +25,17 @@ var options = {
 };
 
 window.onload = function () {
-    var myDropzone = new Dropzone("#myDropzone", options);
+    let allDropzones = document.querySelectorAll(".myDropzone");
+
+    sanitizedProductsIds.forEach(id => {
+        var myDropzone = new Dropzone("#myDropzone-" + id, options);
+    });  
+   
+    
+   
 };
+
+
 
 
 
