@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PosterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Subtype\FashionController; 
 use App\Http\Controllers\StockController; 
@@ -46,15 +47,16 @@ Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'a
         Route::group(['prefix' => "/", 'as' => 'fashion.'],function(){
             Route::get('/{subtype}', [FashionController::class,'create'])->name('create');
             Route::post('/salvar',[FashionController::class,'store'])->name('store');
-        });
-
-        
+        });        
     });
 });
 
-Route::group(['prefix' => "/banner", 'as' => 'banner.','middleware' => 'auth'], function(){
-    Route::post('/',[DropzonePoster::class,'upload'])->name('upload');
+Route::group(['prefix' => "posters", 'as' => 'posters.','middleware'=> 'auth'],function() {
+    Route::get('/', [PosterController::class, "index"] )->name("index");
+    Route::get('/criar', [PosterController::class, "create"] )->name("create");
 });
+
+
 
 Route::get('/produto/estoque',[StockController::class,'index'])->middleware('auth')->name('stock');
 

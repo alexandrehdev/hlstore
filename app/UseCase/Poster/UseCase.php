@@ -7,10 +7,11 @@ class UseCase{
     
     public function handle(Input $input)
     {
-        $banner = new Poster();
-        $banner->path = $input->path;
-        $banner->product_id = $input->product_id;
-        $banner->save();
+
+        $poster = new Poster();
+        $poster->path = $input->path;
+        $poster->product_id = $input->product_id;
+        $poster->save();
     }
 
 }

@@ -1,11 +1,6 @@
 @extends('layouts.base')
 @section('title', 'HLStore | Roupas')
 
-
-@section('meta-data')
-<meta property="targeUrl" content="{{ route('type_product.subtype.fashion.store') }}">
-@endsection
-
 @include('partials.header')
 @section('content')
 <div>
