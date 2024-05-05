@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -18,6 +19,11 @@ class Product extends Model
         "status" => ProductStatus::class,
         "created_at" => "datetime:Y-m-d H:00",
     ];
+
+    public function getRouteKeyName()
+    {
+        return "name";
+    }
     
     public function isPublic(): bool
     {

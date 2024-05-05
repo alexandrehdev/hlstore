@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('path');
             $table->integer('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

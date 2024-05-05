@@ -52,15 +52,16 @@ Route::group(['prefix' => 'produtos', 'as' => 'type_product.','middleware' => 'a
 });
 
 Route::group(['prefix' => "posters", 'as' => 'posters.','middleware'=> 'auth'],function() {
-    Route::get('/', [PosterController::class, "index"] )->name("index");
+    Route::get('/{product}', [PosterController::class, "show"] )->name("show");
     Route::get('/criar', [PosterController::class, "create"] )->name("create");
+    Route::post('/salvar', [PosterController::class, "store"] )->name("store");
 });
 
 
 
 Route::get('/produto/estoque',[StockController::class,'index'])->middleware('auth')->name('stock');
 
-Route::get('/produto/compra', [ProductController::class,'show'])->name('show');
+Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');
 
 
 Route::get('/configuracoes',function(){

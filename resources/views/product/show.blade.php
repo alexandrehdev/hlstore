@@ -1,156 +1,228 @@
 @extends('layouts.base')
 
 @include('partials.header')
+@section('title', $product->name)
 @section('content')
 
-    <div class="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-      <a href="#" class="text-2xl font-bold text-gray-800">Detalhes da Compra</a>
-      <div class="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
-        <div class="relative">
-          <ul class="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
-            <li class="flex items-center space-x-3 text-left sm:space-x-4">
-              <a class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-200 text-xs font-semibold text-emerald-700" href="#"
-                ><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg
-              ></a>
-              <span class="font-semibold text-gray-900">Compra</span>
-            </li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-            <li class="flex items-center space-x-3 text-left sm:space-x-4">
-              <a class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-600 text-xs font-semibold text-white ring ring-gray-600 ring-offset-2" href="#">2</a>
-              <span class="font-semibold text-gray-900">Shipping</span>
-            </li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-            <li class="flex items-center space-x-3 text-left sm:space-x-4">
-              <a class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400 text-xs font-semibold text-white" href="#">3</a>
-              <span class="font-semibold text-gray-500">Payment</span>
-            </li>
-          </ul>
+
+                                                
+<style>
+    .nav-for-slider .swiper-slide {
+        height: auto;
+        width: auto;
+        cursor: pointer;
+       
+    }
+    .swiper-wrapper{
+        height: auto;
+    }
+    .nav-for-slider .swiper-slide img{
+        border:2px solid transparent;
+        border-radius: 10px;
+       
+    }
+    .nav-for-slider .swiper-slide-thumb-active img{
+       
+        border-color: rgb(79 70 229 );
+    }
+</style>  
+<section class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="slider-box w-full h-full max-lg:mx-auto mx-0">
+                <div class="swiper main-slide-carousel swiper-container relative mb-6">
+                    <div class="swiper-wrapper">
+                        @foreach($product->posters as $poster)
+                        <div class="swiper-slide">
+                            <div class="block">
+                                <img src="{{ $poster->path }}" alt="Summer Travel Bag image" class="max-lg:mx-auto">
+                            </div>
+                        </div>
+                        @endforeach
+                    
+                    </div>
+                  </div>
+                  <div class="nav-for-slider">
+                    <div class="swiper-wrapper">
+                        @foreach($product->posters as $poster)
+                        <div class="swiper-slide thumbs-slide">
+                            <img src="{{ $poster->path }}" alt="Summer Travel Bag image"
+                            class="cursor-pointer rounded-xl transition-all duration-500 ">
+                          </div>
+                        @endforeach 
+                    </div>
+                  </div>
+
+                  <div class="pt-10">
+                    <div class="bg-gray-100 p-5 rounded-sm">
+                        <span class="text-gray-600">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Eveniet, tenetur numquam omnis cum doloribus doloremque sed aspernatur consequatur quas repellendus sequi, 
+                            molestiae beatae velit! Eius temporibus ipsa maxime officia doloremque.
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora quod saepe debitis porro soluta perspiciatis, dolorum alias minus dolor accusantium ipsa similique incidunt iusto. 
+                            Dolor voluptatibus repudiandae numquam placeat libero!
+                        </span>
+                    </div>
+                  </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="pro-detail w-full max-lg:max-w-[608px] lg:pl-8 xl:pl-16 max-lg:mx-auto max-lg:mt-8">
+                    <div class="flex items-center justify-between gap-6 mb-6">
+                        <div class="text">
+                            <h2 class="font-manrope font-bold text-3xl leading-10 text-gray-900 mb-2">
+                                {{ $product->name }}
+                            </h2>
+                            <p class="font-normal text-base text-gray-500">
+                                {{ $product->description }}
+                            </p>
+                        </div>
+                        <button class="group transition-all duration-500 p-0.5">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle
+                                    class="fill-indigo-50 transition-all duration-500 group-hover:fill-indigo-100"
+                                    cx="30" cy="30" r="30" fill="" />
+                                <path
+                                    class="stroke-indigo-600 transition-all duration-500 group-hover:stroke-indigo-700"
+                                    d="M21.4709 31.3196L30.0282 39.7501L38.96 30.9506M30.0035 22.0789C32.4787 19.6404 36.5008 19.6404 38.976 22.0789C41.4512 24.5254 41.4512 28.4799 38.9842 30.9265M29.9956 22.0789C27.5205 19.6404 23.4983 19.6404 21.0231 22.0789C18.548 24.5174 18.548 28.4799 21.0231 30.9184M21.0231 30.9184L21.0441 30.939M21.0231 30.9184L21.4628 31.3115"
+                                    stroke="" stroke-width="1.6" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col min-[400px]:flex-row min-[400px]:items-center mb-8 gap-y-3">
+                        <div class="flex items-center">
+                            <h5 class="font-manrope font-semibold text-3xl leading-9 text-gray-900">{{ $product->price }}</h5>
+                            <span class="ml-3 font-semibold text-lg text-lime-600">30% off</span>
+                        </div>
+                        <svg class="mx-5 max-[400px]:hidden" xmlns="http://www.w3.org/2000/svg" width="2" height="36"
+                            viewBox="0 0 2 36" fill="none">
+                            <path d="M1 0V36" stroke="#E5E7EB" />
+                        </svg>
+                        <button class="flex items-center gap-1 rounded-lg bg-amber-400 py-1.5 px-2.5 w-max">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_12657_16865)">
+                                    <path
+                                        d="M8.10326 2.26718C8.47008 1.52393 9.52992 1.52394 9.89674 2.26718L11.4124 5.33818C11.558 5.63332 11.8396 5.83789 12.1653 5.88522L15.5543 6.37768C16.3746 6.49686 16.7021 7.50483 16.1086 8.08337L13.6562 10.4738C13.4205 10.7035 13.313 11.0345 13.3686 11.3589L13.9475 14.7343C14.0877 15.5512 13.2302 16.1742 12.4966 15.7885L9.46534 14.1948C9.17402 14.0417 8.82598 14.0417 8.53466 14.1948L5.5034 15.7885C4.76978 16.1742 3.91235 15.5512 4.05246 14.7343L4.63137 11.3589C4.68701 11.0345 4.57946 10.7035 4.34378 10.4738L1.89144 8.08337C1.29792 7.50483 1.62543 6.49686 2.44565 6.37768L5.8347 5.88522C6.16041 5.83789 6.44197 5.63332 6.58764 5.33818L8.10326 2.26718Z"
+                                        fill="white" />
+                                    <g clip-path="url(#clip1_12657_16865)">
+                                        <path
+                                            d="M8.10326 2.26718C8.47008 1.52393 9.52992 1.52394 9.89674 2.26718L11.4124 5.33818C11.558 5.63332 11.8396 5.83789 12.1653 5.88522L15.5543 6.37768C16.3746 6.49686 16.7021 7.50483 16.1086 8.08337L13.6562 10.4738C13.4205 10.7035 13.313 11.0345 13.3686 11.3589L13.9475 14.7343C14.0877 15.5512 13.2302 16.1742 12.4966 15.7885L9.46534 14.1948C9.17402 14.0417 8.82598 14.0417 8.53466 14.1948L5.5034 15.7885C4.76978 16.1742 3.91235 15.5512 4.05246 14.7343L4.63137 11.3589C4.68701 11.0345 4.57946 10.7035 4.34378 10.4738L1.89144 8.08337C1.29792 7.50483 1.62543 6.49686 2.44565 6.37768L5.8347 5.88522C6.16041 5.83789 6.44197 5.63332 6.58764 5.33818L8.10326 2.26718Z"
+                                            fill="white" />
+                                    </g>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_12657_16865">
+                                        <rect width="18" height="18" fill="white" />
+                                    </clipPath>
+                                    <clipPath id="clip1_12657_16865">
+                                        <rect width="18" height="18" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <span class="text-base font-medium text-white">4.8</span>
+                        </button>
+                    </div>
+                    <p class="font-medium text-lg text-gray-900 mb-2">Color</p>
+                    <div class="grid grid-cols-3 gap-3 mb-6 max-w-sm">
+                        <div class="color-box group">
+                            <div>
+                                <img src="https://pagedone.io/asset/uploads/1700472379.png" alt="Summer Travel Bag image"
+                                    class="min-[400px]:h-[100px] aspect-square border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-indigo-600"
+                                    class="border border-gray-300 rounded-lg">
+                                <p
+                                    class="font-normal text-sm leading-6 text-gray-400 text-center mt-2 group-hover:text-indigo-600 ">
+                                    Black</p>
+                            </div>
+                        </div>
+
+                        <div class="color-box group">
+                            <div>
+                                <img src="https://pagedone.io/asset/uploads/1700472517.png" alt="Summer Travel Bag image"
+                                    class="border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-indigo-600"
+                                    class="border border-gray-300 rounded-lg">
+                                <p
+                                    class="font-normal text-sm leading-6 text-gray-400 text-center mt-2 group-hover:text-indigo-600 ">
+                                    Brown</p>
+                            </div>
+                        </div>
+
+                        <div class="color-box group">
+                            <div>
+                                <img src="https://pagedone.io/asset/uploads/1700472529.png" alt="Summer Travel Bag image"
+                                    class="border-2 border-gray-100 rounded-xl transition-all duration-500 group-hover:border-indigo-600"
+                                    class="border border-gray-300 rounded-lg">
+                                <p
+                                    class="font-normal text-sm leading-6 text-gray-400 text-center mt-2 group-hover:text-indigo-600 ">
+                                    Beige</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-medium text-lg text-gray-900 mb-2">Size (KG)</p>
+                    <div class="grid grid-cols-2 min-[400px]:grid-cols-4 gap-3 mb-3 min-[400px]:mb-8">
+                        <button
+                            class="border border-gray-200 whitespace-nowrap text-gray-900 text-sm leading-6 py-2.5 rounded-full px-5 text-center w-full font-semibold shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">Full
+                            Set</button>
+                        <button
+                            class="border border-gray-200 whitespace-nowrap text-gray-900 text-sm leading-6 py-2.5 rounded-full px-5 text-center w-full font-semibold shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                            10 kg</button>
+                        <button
+                            class="border border-gray-200 whitespace-nowrap text-gray-900 text-sm leading-6 py-2.5 rounded-full px-5 text-center w-full font-semibold shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                            25 kg</button>
+                        <button
+                            class="border border-gray-200 whitespace-nowrap text-gray-900 text-sm leading-6 py-2.5 rounded-full px-5 text-center w-full font-semibold shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                            35 kg</button>
+                    </div>
+                    <div class="flex items-center flex-col min-[400px]:flex-row gap-3 mb-3 min-[400px]:mb-8">
+                        <div class=" flex items-center justify-center border border-gray-400 rounded-full">
+                            <button
+                                class="group py-[14px] px-3 w-full border-r border-gray-400 rounded-l-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                                <svg class="stroke-black group-hover:stroke-black" width="22" height="22"
+                                    viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.5 11H5.5" stroke="" stroke-width="1.6" stroke-linecap="round" />
+                                    <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                    <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <input type="text"
+                                class="font-semibold text-gray-900 text-lg py-3 px-2 w-full min-[400px]:min-w-[75px] h-full bg-transparent placeholder:text-gray-900 text-center hover:text-indigo-600 outline-0 hover:placeholder:text-indigo-600"
+                                placeholder="1">
+                            <button
+                                class="group py-[14px] px-3 w-full border-l border-gray-400 rounded-r-full h-full flex items-center justify-center bg-white shadow-sm shadow-transparent transition-all duration-300 hover:bg-gray-50 hover:shadow-gray-300">
+                                <svg class="stroke-black group-hover:stroke-black" width="22" height="22"
+                                    viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="#9CA3AF" stroke-width="1.6"
+                                        stroke-linecap="round" />
+                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="black" stroke-opacity="0.2"
+                                        stroke-width="1.6" stroke-linecap="round" />
+                                    <path d="M11 5.5V16.5M16.5 11H5.5" stroke="black" stroke-opacity="0.2"
+                                        stroke-width="1.6" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                        </div>
+                        <button
+                            class="group py-3 px-5 rounded-full bg-indigo-50 text-indigo-600 font-semibold text-lg w-full flex items-center justify-center gap-2 shadow-sm shadow-transparent transition-all duration-500 hover:shadow-indigo-300 hover:bg-indigo-100">
+                            <svg class="stroke-indigo-600 transition-all duration-500 group-hover:stroke-indigo-600"
+                                width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.7394 17.875C10.7394 18.6344 10.1062 19.25 9.32511 19.25C8.54402 19.25 7.91083 18.6344 7.91083 17.875M16.3965 17.875C16.3965 18.6344 15.7633 19.25 14.9823 19.25C14.2012 19.25 13.568 18.6344 13.568 17.875M4.1394 5.5L5.46568 12.5908C5.73339 14.0221 5.86724 14.7377 6.37649 15.1605C6.88573 15.5833 7.61377 15.5833 9.06984 15.5833H15.2379C16.6941 15.5833 17.4222 15.5833 17.9314 15.1605C18.4407 14.7376 18.5745 14.0219 18.8421 12.5906L19.3564 9.84059C19.7324 7.82973 19.9203 6.8243 19.3705 6.16215C18.8207 5.5 17.7979 5.5 15.7522 5.5H4.1394ZM4.1394 5.5L3.66797 2.75"
+                                    stroke="" stroke-width="1.6" stroke-linecap="round" />
+                            </svg>
+                            Adicionar ao Carrinho</button>
+                    </div>
+                    <button
+                        class="text-center w-full px-5 py-4 rounded-[100px] bg-indigo-600 flex items-center justify-center font-semibold text-lg text-white shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-300">
+                        Comprar
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-      <div class="px-4 pt-8">
-        <p class="text-xl font-medium">Order Summary</p>
-        <p class="text-gray-400">Check your items. And select a suitable shipping method.</p>
-        <div class="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
-          <div class="flex flex-col rounded-lg bg-white sm:flex-row">
-            <img class="m-2 h-24 w-28 rounded-md border object-cover object-center" src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
-            <div class="flex w-full flex-col px-4 py-4">
-              <span class="font-semibold">Nike Air Max Pro 8888 - Super Light</span>
-              <span class="float-right text-gray-400">42EU - 8.5US</span>
-              <p class="text-lg font-bold">$138.99</p>
-            </div>
-          </div>
-          <div class="flex flex-col rounded-lg bg-white sm:flex-row">
-            <img class="m-2 h-24 w-28 rounded-md border object-cover object-center" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
-            <div class="flex w-full flex-col px-4 py-4">
-              <span class="font-semibold">Nike Air Max Pro 8888 - Super Light</span>
-              <span class="float-right text-gray-400">42EU - 8.5US</span>
-              <p class="mt-auto text-lg font-bold">$238.99</p>
-            </div>
-          </div>
-        </div>
-    
-        <p class="mt-8 text-lg font-medium">Shipping Methods</p>
-        <form class="mt-5 grid gap-6">
-          <div class="relative">
-            <input class="peer hidden" id="radio_1" type="radio" name="radio" checked />
-            <span class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-            <label class="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_1">
-              <img class="w-14 object-contain" src="/images/naorrAeygcJzX0SyNI4Y0.png" alt="" />
-              <div class="ml-5">
-                <span class="mt-2 font-semibold">Fedex Delivery</span>
-                <p class="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-              </div>
-            </label>
-          </div>
-          <div class="relative">
-            <input class="peer hidden" id="radio_2" type="radio" name="radio" checked />
-            <span class="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white"></span>
-            <label class="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4" for="radio_2">
-              <img class="w-14 object-contain" src="/images/oG8xsl3xsOkwkMsrLGKM4.png" alt="" />
-              <div class="ml-5">
-                <span class="mt-2 font-semibold">Fedex Delivery</span>
-                <p class="text-slate-500 text-sm leading-6">Delivery: 2-4 Days</p>
-              </div>
-            </label>
-          </div>
-        </form>
-      </div>
-      <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
-        <p class="text-xl font-medium">Payment Details</p>
-        <p class="text-gray-400">Complete your order by providing your payment details.</p>
-        <div class="">
-          <label for="email" class="mt-4 mb-2 block text-sm font-medium">Email</label>
-          <div class="relative">
-            <input type="text" id="email" name="email" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="your.email@gmail.com" />
-            <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-              </svg>
-            </div>
-          </div>
-          <label for="card-holder" class="mt-4 mb-2 block text-sm font-medium">Card Holder</label>
-          <div class="relative">
-            <input type="text" id="card-holder" name="card-holder" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Your full name here" />
-            <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z" />
-              </svg>
-            </div>
-          </div>
-          <label for="card-no" class="mt-4 mb-2 block text-sm font-medium">Card Details</label>
-          <div class="flex">
-            <div class="relative w-7/12 flex-shrink-0">
-              <input type="text" id="card-no" name="card-no" class="w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="xxxx-xxxx-xxxx-xxxx" />
-              <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z" />
-                  <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z" />
-                </svg>
-              </div>
-            </div>
-            <input type="text" name="credit-expiry" class="w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="MM/YY" />
-            <input type="text" name="credit-cvc" class="w-1/6 flex-shrink-0 rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="CVC" />
-          </div>
-          <label for="billing-address" class="mt-4 mb-2 block text-sm font-medium">Billing Address</label>
-          <div class="flex flex-col sm:flex-row">
-            <div class="relative flex-shrink-0 sm:w-7/12">
-              <input type="text" id="billing-address" name="billing-address" class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
-              <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                <img class="h-4 w-4 object-contain" src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg" alt="" />
-              </div>
-            </div>
-            <select type="text" name="billing-state" class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
-              <option value="State">State</option>
-            </select>
-            <input type="text" name="billing-zip" class="flex-shrink-0 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
-          </div>
-    
-          <!-- Total -->
-          <div class="mt-6 border-t border-b py-2">
-            <div class="flex items-center justify-between">
-              <p class="text-sm font-medium text-gray-900">Subtotal</p>
-              <p class="font-semibold text-gray-900">$399.00</p>
-            </div>
-            <div class="flex items-center justify-between">
-              <p class="text-sm font-medium text-gray-900">Shipping</p>
-              <p class="font-semibold text-gray-900">$8.00</p>
-            </div>
-          </div>
-          <div class="mt-6 flex items-center justify-between">
-            <p class="text-sm font-medium text-gray-900">Total</p>
-            <p class="text-2xl font-semibold text-gray-900">$408.00</p>
-          </div>
-        </div>
-        <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Place Order</button>
-      </div>
-    </div>
-    
-    
+</section>                                        
+
 @endsection

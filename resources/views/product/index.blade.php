@@ -34,8 +34,7 @@
 
           <x-product-card :product=$product/>
           
-        @endforeach
-        
+        @endforeach        
     </div>
 
 </div>

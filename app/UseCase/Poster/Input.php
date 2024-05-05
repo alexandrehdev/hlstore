@@ -5,12 +5,12 @@ use App\Models\Product;
 class Input{
 
     /**
-     * Undocumented function
+     * All posters data
      *
-     * @param string $path
+     * @param array $poster_data
      */
     public function __construct(
-        public string $path,
-        public int $product_id
+       public array $data,
+       public int $product_id
     ){}
 }

@@ -1,8 +1,6 @@
 @extends('layouts.base')
 @section('title', 'HLStore | Estoque')
-@section('meta-data')
-    <meta property="productsCount" content=" @json($products->pluck('id')->toArray()) ">
-@endsection
+
 @include('partials.header')
 @section('content')
 <section class="container px-4 mx-auto">
@@ -65,7 +63,7 @@
 
                                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Criado Há</th>
 
-                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Teams</th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Posters</th>
 
                                 <th scope="col" class="relative py-3.5 px-4">
                                     <span class="sr-only">Edit</span>
@@ -90,10 +88,9 @@
                                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                     <div class="inline-flex items-center gap-x-3">
                                         
-
+                                        
                                         <div class="flex items-center gap-x-2">
-                                            <img class="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="">
-                                            
+                                            <img class="object-cover w-10 h-10 rounded-full" src="{{ $product->posters()->first()->path }}" alt="">
                                         </div>
                                     </div>
                                 </td>
@@ -125,9 +122,9 @@
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">{{ $product->readableCreatedAt() }}</td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
                                     <div class="flex items-center gap-x-2">
-                                        <p class="px-3 py-1 text-xs text-indigo-500 rounded-full bg-indigo-100/60">Design</p>
-                                        <p class="px-3 py-1 text-xs text-blue-500 rounded-full bg-blue-100/60">Product</p>
-                                        <p class="px-3 py-1 text-xs text-pink-500 rounded-full bg-pink-100/60">Marketing</p>
+                                        <p class="px-3 py-1 text-xs text-indigo-500 rounded-full bg-indigo-100/60">{{ $product->posters->count() }}</p>
+                                        {{-- <p class="px-3 py-1 text-xs text-blue-500 rounded-full bg-blue-100/60">Product</p>
+                                        <p class="px-3 py-1 text-xs text-pink-500 rounded-full bg-pink-100/60">Marketing</p> --}}
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
@@ -178,7 +175,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('posters.index') }}" class="block px-4 py-2 hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                <a href="{{ route('posters.show',["product" => $product->id]) }}" class="block px-4 py-2 hover:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                                       </svg>
