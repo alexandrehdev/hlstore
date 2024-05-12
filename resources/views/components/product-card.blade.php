@@ -1,7 +1,7 @@
       <div class="relative px-5 pb-5 my-12 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
         <a href="{{ route('show',["product" => $product ]) }}" class="max-w-[384px] mx-auto">
           <div class="w-full max-w-sm aspect-square relative">
-              <img src="{{ $product->posters->first()->path }}" alt="serum bottle image" class=" object-cover w-full h-full rounded-xl">
+              <img src="{{ $product->posters->first()->path ?? asset('img/no-image.png') }}" alt="serum bottle image" class=" object-cover w-full h-full rounded-xl">
               <span
                   class="py-1 min-[400px]:py-2 px-2 min-[400px]:px-4 cursor-pointer rounded-lg bg-gradient-to-tr from-indigo-600 to-purple-600 font-medium text-base leading-7 text-white absolute top-3 right-3 z-10">20%
                   Off</span>
