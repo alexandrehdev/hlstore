@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Subtype\FashionController; 
 use App\Http\Controllers\StockController; 
 use App\Livewire\DropzonePoster;
+use Illuminate\Support\Facades\Http;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +64,12 @@ Route::get('/produto/estoque',[StockController::class,'index'])->middleware('aut
 
 Route::get('/produto/{product}', [ProductController::class,'show'])->name('show');
 
+Route::get("/teste", function(){
+    Http::post(
+        "https://hook.us1.make.com/61sf6vyr30r29udqirqknpfnfhcfnjwr",
+        ["name" => "bryson"]
+    );
+});
 
 Route::get('/configuracoes',function(){
     return view('settings.index');

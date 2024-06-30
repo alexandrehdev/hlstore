@@ -9,9 +9,9 @@ use App\Http\Requests\Posters\StoreRequest;
 
 class PosterController extends Controller
 {
-    
+
     public function show(int $product_id)
-    {   
+    {
         return view("posters.show",["product_id" => $product_id]);
     }
 
@@ -25,15 +25,15 @@ class PosterController extends Controller
         $posters = $request->file("posters");
         $product_id = $request->validated()["product_id"];
 
-        
+
         $poster_input = new PosterInput(
          $posters,
-    $product_id
+         $product_id
         );
 
         $storePoster->handle($poster_input);
 
         return redirect()->route("stock");
     }
-    
+
 }
